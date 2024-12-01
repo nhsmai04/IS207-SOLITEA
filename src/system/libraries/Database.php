@@ -6,9 +6,9 @@ class Database extends PDO
     {
         parent::__construct($connect, $user, $password);
     }
-    public function select()
+    public function select($table)
     {
-        $sql = "SELECT * FROM pdo_is207";
+        $sql = "SELECT * FROM $table";
         $statement = $this->prepare($sql);
         $statement->execute();
         return $statement->fetchAll();

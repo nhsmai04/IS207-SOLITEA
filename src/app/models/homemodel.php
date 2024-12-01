@@ -6,8 +6,8 @@ class homemodel extends DModel
         parent::__construct();
     }
 
-    public function getUser()
+    public function getUser($table)
     {
-        return $this->db->select();
+        return $this->db->select($table);
     }
 }
