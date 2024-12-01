@@ -4,7 +4,7 @@ class Load
 
     public function __construct() {}
 
-    public function view($filename)
+    public function view($filename, $data = false)
     {
         include_once './app/views/' . $filename . '.php';
     }

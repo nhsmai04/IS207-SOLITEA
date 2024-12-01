@@ -1,5 +1,5 @@
 <?php
-
+# Chuyển trang viết ở class này
 class index extends DController
 {
 

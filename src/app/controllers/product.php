@@ -9,6 +9,6 @@ class product extends DController
     }
     public function chitietsanpham()
     {
-        echo '<br Chi tiet san pham </br>';
+        echo "Chi tiet san pham";
     }
 }

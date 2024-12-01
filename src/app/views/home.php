@@ -9,6 +9,11 @@
 
 <body>
     <h1>This is homepage</h1>
+    <?php
+    include_once('./app/models/homemodel.php');
+    $index = new homemodel();
+    $index->getUser();
+    ?>
 </body>
 
 </html>

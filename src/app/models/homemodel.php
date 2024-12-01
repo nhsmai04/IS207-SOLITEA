@@ -1,13 +1,13 @@
 <?php
-
-class homemodel
+class homemodel extends DModel
 {
     public function __construct()
     {
-        echo 'This is homemodel';
+        parent::__construct();
     }
-    public function getProduct($tableProduct)
+
+    public function getUser()
     {
-        return 'h';
+        return $this->db->select();
     }
 }
