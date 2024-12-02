@@ -12,7 +12,7 @@
     <?php
     include_once('./app/models/homemodel.php');
     $index = new homemodel();
-
+    
     ?>
 </body>
 

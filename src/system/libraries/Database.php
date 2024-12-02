@@ -13,4 +13,14 @@ class Database extends PDO
         $statement->execute();
         return $statement->fetchAll();
     }
+
+    // public function select ($sql,$data = array(),$fetchStyle = PDO::FETCH_ASSOC)
+    {
+        $statement = $this->prepare($sql);
+
+        foreach ($data as $key => $value) {
+            $statement->excute();
+            return $statement->fetchAll($fetchStyle);
+        }
+    }
 }
