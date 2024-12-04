@@ -1,7 +1,6 @@
-<?php
-# Chuyển trang viết ở class này
 
-class index extends DController
+<?php
+class shop extends DController
 {
 
     public function __construct()
@@ -15,6 +14,7 @@ class index extends DController
         $homemodel = $this->load->model('homemodel');
         $table = 'SELECT * FROM drinks';
         $data['fruits'] = $homemodel->selectallItem($table);
-        $this->load->view('index', $data);
+        $this->load->view('', $data);
     }
 }
+?>

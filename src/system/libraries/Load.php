@@ -4,8 +4,11 @@ class Load
 
     public function __construct() {}
 
-    public function view($filename, $data = false)
+    public function view($filename, $data = [])
     {
+        if ($data) {
+            extract($data);
+        }
         include_once './app/views/' . $filename . '.php';
     }
     public function model($filename)

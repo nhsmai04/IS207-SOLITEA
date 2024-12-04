@@ -1,7 +1,6 @@
 <?php
-class homemodel extends DModel
+class categorymodel extends DModel
 {
-    protected $db;
     public function __construct()
     {
         parent::__construct();
@@ -17,5 +16,10 @@ class homemodel extends DModel
     {
         $sql = "SELECT * FROM $table ";
         return $this->db->getItem($sql);
+    }
+    public function insertItem($table, $data)
+    {
+        echo "model da duoc chay";
+        return $this->db->insertItem($table, $data);
     }
 }

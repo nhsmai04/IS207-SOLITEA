@@ -7,8 +7,14 @@ class product extends DController
     {
         parent::__construct();
     }
-    public function chitietsanpham()
+    public function allItem()
     {
-        echo "Chi tiet san pham";
+        $index = $this->load->model('homemodel');
+
+        // Lấy dữ liệu
+        $data = $index->getItem();
+
+        // Tải view và truyền dữ liệu
+        $this->load->view('fruits', ['drinks' => $data]);
     }
 }
