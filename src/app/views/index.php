@@ -22,10 +22,10 @@
     <link href="/src/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="http://localhost:8080/IS207-SOLITEA/src/app/views/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="http://localhost:8080/IS207-SOLITEA/src/app/views/css/style.css" rel="stylesheet">
+    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -249,18 +249,18 @@
                         <div class="row g-4">
                             <div class="col-lg-12">
                                 <div class="row g-4">
-                                    <?php foreach ($fruits as $fruit): ?>
+                                    <?php foreach ($fruits as $fruits): ?>
                                         <div class="col-md-6 col-lg-4 col-xl-3">
-                                            <div class="rounded position-relative fruite-item">
-                                                <div class="fruite-img">
-                                                    <img src="Assets\tea\<?= htmlspecialchars($fruit['image']) ?>" class="img-fluid w-100 rounded-top" alt="<?= htmlspecialchars($fruit['name']) ?>">
+                                            <div class="rounded position-relative fruit-item">
+                                                <div class="fruit-img">
+                                                    <img src="Assets\tea\<?= htmlspecialchars($fruits['image']) ?>" class="img-fluid w-100 rounded-top" alt="<?= htmlspecialchars($fruits['name']) ?>">
                                                 </div>
                                                 <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <h4><?= htmlspecialchars($fruit['name']) ?></h4>
-                                                    <p><?= htmlspecialchars($fruit['description']) ?></p>
+                                                    <h4><?= htmlspecialchars($fruits['name']) ?></h4>
+                                                    <p><?= htmlspecialchars($fruits['description']) ?></p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">$<?= htmlspecialchars($fruit['price']) ?> / kg</p>
+                                                        <p class="text-dark fs-5 fw-bold mb-0">$<?= htmlspecialchars($fruits['price']) ?> / kg</p>
                                                         <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                     </div>
                                                 </div>
@@ -1093,13 +1093,13 @@
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="http://localhost:8080/IS207-SOLITEA/src/app/views/lib/easing/easing.min.js"></script>
-    <script src="http://localhost:8080/IS207-SOLITEA/src/app/views/lib/waypoints/waypoints.min.js"></script>
-    <script src="http://localhost:8080/IS207-SOLITEA/src/app/views/lib/lightbox/js/lightbox.min.js"></script>
-    <script src="http://localhost:8080/IS207-SOLITEA/src/app/views/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="http://localhost:8080/IS207-SOLITEA/src/app/public/lib/easing/easing.min.js"></script>
+    <script src="http://localhost:8080/IS207-SOLITEA/src/app/public/lib/waypoints/waypoints.min.js"></script>
+    <script src="http://localhost:8080/IS207-SOLITEA/src/app/public/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="http://localhost:8080/IS207-SOLITEA/src/app/public/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="http://localhost:8080/IS207-SOLITEA/src/app/views/js/main.js"></script>
+    <script src="http://localhost:8080/IS207-SOLITEA/src/app/public/js/main.js"></script>
 </body>
 
 </html>

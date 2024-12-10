@@ -48,6 +48,63 @@ class Database extends PDO
     {
         $statement = $this->prepare($sql);
         $statement->execute(array($username, $password));
-        echo $statement->rowCount();
+        return $statement->rowCount();
+    }
+    public function updateItem($table, $data, $where)
+    {
+        try {
+            $key = '';
+            $condition = '';
+            foreach ($data as $k => $v) {
+                $key .= $k . ' = :' . $k . ', ';
+            }
+            $key = substr($key, 0, -2);
+            foreach ($where as $k => $v) {
+                if ($condition != '') {
+                    $condition .= ' AND ';
+                }
+                $condition .= $k . ' = :' . $k;
+            }
+            $sql = "UPDATE $table SET $key WHERE $condition";
+            $statement = $this->prepare($sql);
+            foreach ($data as $k => $v) {
+                $statement->bindValue(":$k", $v);
+            }
+            foreach ($where as $k => $v) {
+                $statement->bindValue(":$k", $v);
+            }
+            return $statement->execute();
+        } catch (PDOException $e) {
+            // Log the error or handle it as needed
+            error_log("Update Error: " . $e->getMessage());
+            return false;
+        }
+    }
+    public function deleteItem($table, $where)
+    {
+        try {
+            $condition = '';
+            foreach ($where as $key => $val) {
+                if ($condition != '') {
+                    $condition .= ' AND ';
+                }
+                $condition .= $key . '=:' . $key;
+            }
+            $sql = "DELETE FROM $table  WHERE $condition";
+            $statement = $this->prepare($sql);
+            foreach ($where as $key => $val) {
+                $statement->bindValue(":$key", $val);
+            }
+            return $statement->execute();
+        } catch (PDOException $e) {
+            error_log("Update Error: " . $e->getMessage());
+            return false;
+        }
+    }
+    public function selectUser($sql, $username, $password)
+    {
+        $statement = $this->prepare($sql);
+        $statement->execute(array($username, $password));
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }

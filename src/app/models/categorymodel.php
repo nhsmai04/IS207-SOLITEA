@@ -22,4 +22,10 @@ class categorymodel extends DModel
         echo "model da duoc chay";
         return $this->db->insertItem($table, $data);
     }
+
+    public function updateItem($table, $data, $where)
+    {
+        echo "model da duoc chay";
+        return $this->db->updateItem($table, $data, $where);
+    }
 }

@@ -1,0 +1,1 @@
+<h1>Welcome to Dashboard <a href="<?php echo BASE_URL ?>/login/logout">Đăng Xuất</a></h1>

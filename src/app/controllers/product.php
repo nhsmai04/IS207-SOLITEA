@@ -7,14 +7,17 @@ class product extends DController
     {
         parent::__construct();
     }
-    public function allItem()
+
+    public function index()
     {
-        $index = $this->load->model('homemodel');
+        $this->add_Product();
+    }
+    public function add_Product()
+    {
 
-        // Lấy dữ liệu
-        $data = $index->getItem();
-
-        // Tải view và truyền dữ liệu
-        $this->load->view('fruits', ['drinks' => $data]);
+        $this->load->view('cpanel/header');
+        $this->load->view('cpanel/menu');
+        $this->load->view('cpanel/product/add_product');
+        $this->load->view('cpanel/footer');
     }
 }

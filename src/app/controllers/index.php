@@ -12,8 +12,8 @@ class index extends DController
 
     public function index()
     {
-        $homemodel = $this->load->model('homemodel');
-        $table = 'SELECT * FROM drinks';
+        $homemodel = $this->load->model('categorymodel');
+        $table = "drinks";
         $data['fruits'] = $homemodel->selectallItem($table);
         $this->load->view('index', $data);
     }
