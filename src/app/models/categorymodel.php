@@ -9,23 +9,27 @@ class categorymodel extends DModel
 
     public function selectallItem($table)
     {
-        $sql = "SELECT * FROM $table";
+        $sql = "SELECT * FROM $table ORDER BY id DESC";
         return $this->db->getItem($sql);
     }
     public function selectbyCon($table, $Con)
     {
-        $sql = "SELECT * FROM $table ";
+        $sql = "SELECT * FROM $table WHERE $Con";
         return $this->db->getItem($sql);
     }
     public function insertItem($table, $data)
     {
-        echo "model da duoc chay";
+
         return $this->db->insertItem($table, $data);
     }
 
     public function updateItem($table, $data, $where)
     {
-        echo "model da duoc chay";
         return $this->db->updateItem($table, $data, $where);
+    }
+    public function deleteItem($table, $cond)
+    {
+
+        return $this->db->deleteItem($table, $cond);
     }
 }

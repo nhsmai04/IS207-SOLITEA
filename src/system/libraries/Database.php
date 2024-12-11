@@ -91,6 +91,7 @@ class Database extends PDO
                 $condition .= $key . '=:' . $key;
             }
             $sql = "DELETE FROM $table  WHERE $condition";
+            error_log("SQL Query: $sql"); // Kiem tra loi
             $statement = $this->prepare($sql);
             foreach ($where as $key => $val) {
                 $statement->bindValue(":$key", $val);

@@ -10,9 +10,10 @@ class product extends DController
 
     public function index()
     {
-        $this->add_Product();
+        $this->add_category();
+        $this->list_Category();
     }
-    public function add_Product()
+    public function add_category()
     {
 
         $this->load->view('cpanel/header');
@@ -20,7 +21,7 @@ class product extends DController
         $this->load->view('cpanel/product/add_product');
         $this->load->view('cpanel/footer');
     }
-    public function insert_product()
+    public function insert_category()
     {
         $name = $_POST['name'];
         $category = $_POST['category'];
@@ -39,11 +40,77 @@ class product extends DController
         $result = $categorymodel->insertItem($table, $data);
         if ($result != 0) {
             $message['msg'] = 'Thêm sản phẩm thành công.';
-            header('Location:' . BASE_URL . '/product?msg=' . urlencode(serialize($message)));
+            header('Location:' . BASE_URL . '/product/list_category?msg=' . urlencode(serialize($message)));
             exit();
         } else {
             $message['msg'] = 'Thêm sản phẩm thất bại.';
             header('Location:' . BASE_URL . '/product?msg=' . urlencode(serialize($message)));
+            exit();
+        }
+    }
+    public function list_category()
+    {
+        $categorymodel = $this->load->model('categorymodel');
+        $table = "product";
+        $data['product'] = $categorymodel->selectallItem($table);
+        $this->load->view('cpanel/header');
+        $this->load->view('cpanel/menu');
+        $this->load->view('cpanel/product/list_product', $data);
+        $this->load->view('cpanel/footer');
+    }
+    public function delete_category($id)
+    {
+        $categorymodel = $this->load->model('categorymodel');
+        $table = "product";
+        $cond = ['Id' => $id];
+        $result = $categorymodel->deleteItem($table, $cond);
+        if ($result != 0) {
+            $message['msg'] = 'Xoá sản phẩm thành công.';
+            header('Location:' . BASE_URL . '/product/list_category?msg=' . urlencode(serialize($message)));
+            exit();
+        } else {
+            $message['msg'] = 'Xoá sản phẩm thất bại.';
+            header('Location:' . BASE_URL . '/product/list_category?msg=' . urlencode(serialize($message)));
+            exit();
+        }
+    }
+    public function update_category($id)
+    {
+        $categorymodel = $this->load->model('categorymodel');
+        $table = "product";
+        $cond = "Id = $id";
+        $data['productbyid'] = $categorymodel->selectbyCon($table, $cond);
+        $this->load->view('cpanel/header');
+        $this->load->view('cpanel/menu');
+        $this->load->view('cpanel/product/update_product', $data);
+        $this->load->view('cpanel/footer');
+    }
+    public function edit_category($id)
+    {
+        $categorymodel = $this->load->model('categorymodel');
+        $table = "product";
+        $cond = "Id = $id";
+        $name = $_POST['name'];
+        $category = $_POST['category'];
+        $description = $_POST['description'];
+        $price = $_POST['price'];
+        $image = $_POST['image'];
+        $data = [
+            'Name' => $name,
+            'Category' => $category,
+            'Description' => $description,
+            'Price' => $price,
+            'Image' => $image
+        ];
+        $cond = ['Id' => $id];
+        $result =  $categorymodel->updateItem($table, $data, $cond);
+        if ($result != 0) {
+            $message['msg'] = 'Update sản phẩm thành công.';
+            header('Location:' . BASE_URL . '/product/list_category?msg=' . urlencode(serialize($message)));
+            exit();
+        } else {
+            $message['msg'] = 'Update sản phẩm thất bại.';
+            header('Location:' . BASE_URL . '/product/list_category?msg=' . urlencode(serialize($message)));
             exit();
         }
     }
