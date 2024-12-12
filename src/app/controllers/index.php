@@ -13,7 +13,7 @@ class index extends DController
     public function index()
     {
         $homemodel = $this->load->model('categorymodel');
-        $table = "drinks";
+        $table = "product";
         $data['fruits'] = $homemodel->selectallItem($table);
         $this->load->view('index', $data);
     }

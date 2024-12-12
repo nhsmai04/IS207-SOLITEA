@@ -15,12 +15,18 @@ class loginmodel extends DModel
         // $stmt->bindValue(':password', $password);
         // $stmt->execute();   
         // return $stmt->rowCount();
-        echo $this->db->affectedRow($sql, $username, $password);
+
         return $this->db->affectedRow($sql, $username, $password);
     }
-    public function getLogin($table_admin, $username, $password)
+
+    public function getLoginAdmin($table_admin, $username, $password)
     {
         $sql = "SELECT * FROM $table_admin WHERE username =? AND password = ?";
         return $this->db->selectUser($sql, $username, $password);
+    }
+    public function getLoginUser($table_user, $email_user, $password)
+    {
+        $sql = "SELECT * FROM $table_user WHERE username =? AND password = ?";
+        return $this->db->selectUser($sql, $email_user, $password);
     }
 }
