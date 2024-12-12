@@ -16,14 +16,19 @@ class login extends DController
 
     public function login()
     {
+        Session::init();
+        if(Session::get('login') == true){
+            header("Location:". BASE_URL ."/login/dashboard");
+        }
         $msg = isset($_GET['msg']) ? unserialize(urldecode($_GET['msg'])) : null;
+        $this->load->view('cpanel/header');
         $this->load->view('cpanel/login', ['msg' => $msg]);
+        $this->load->view('cpanel/footer');
     }
 
     public function dashboard()
     {
         // Kiểm tra nếu người dùng chưa đăng nhập, chuyển hướng về trang login
-
         Session::checkSession();
         $this->load->view('cpanel/header');
         $this->load->view('cpanel/menu');

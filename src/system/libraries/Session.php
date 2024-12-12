@@ -32,7 +32,6 @@ class Session
     public static function destroy()
     {
         // Gọi session_unset() để xóa tất cả các session trước khi hủy
-        session_unset();
         session_destroy();
     }
 
@@ -61,5 +60,15 @@ class Session
         foreach ($_COOKIE as $cookieName => $cookieValue) {
             self::deleteCookie($cookieName);
         }
+    }
+
+    public function dashboard(){
+        session_start();
+        session_destroy();
+        session_unset('login');
+    }
+
+    public function authentication(){
+
     }
 }
