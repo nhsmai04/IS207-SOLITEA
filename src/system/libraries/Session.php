@@ -27,11 +27,16 @@ class Session
             header('Location:' . BASE_URL . '/login');
             exit();
         }
+        if (self::get('admin') === false) {
+            header('Location:' . BASE_URL . '/index');
+            exit();
+        }
     }
 
     public static function destroy()
     {
         // Gọi session_unset() để xóa tất cả các session trước khi hủy
+        //session_unset();
         session_destroy();
     }
 
@@ -61,14 +66,22 @@ class Session
             self::deleteCookie($cookieName);
         }
     }
+<<<<<<< HEAD
 
     public function dashboard(){
+=======
+    public function dashboard()
+    {
+>>>>>>> 53c4491f16c2d14491cd1613f0cd7ca3930416d8
         session_start();
         session_destroy();
         session_unset('login');
     }
+<<<<<<< HEAD
 
     public function authentication(){
 
     }
+=======
+>>>>>>> 53c4491f16c2d14491cd1613f0cd7ca3930416d8
 }

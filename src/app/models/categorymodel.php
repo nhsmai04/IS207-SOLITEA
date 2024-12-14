@@ -17,6 +17,10 @@ class categorymodel extends DModel
         $sql = "SELECT * FROM $table WHERE $Con";
         return $this->db->getItem($sql);
     }
+    public function selectCategory($table, $Con)
+    {
+        return $this->db->getItemByCond($table, $Con);
+    }
     public function insertItem($table, $data)
     {
 

@@ -24,6 +24,7 @@ class product extends DController
     public function insert_category()
     {
         $name = $_POST['name'];
+        $type = $_POST['type'];
         $category = $_POST['category'];
         $description = $_POST['description'];
         $price = $_POST['price'];
@@ -31,6 +32,7 @@ class product extends DController
         $data = array(
             'Name' => $name,
             'Category' => $category,
+            'Type' => $type,
             'Description' => $description,
             'Price' => $price,
             'Image' => $image

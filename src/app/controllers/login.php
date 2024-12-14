@@ -57,8 +57,10 @@ class login extends DController
             }
 
             // Kết nối với model để kiểm tra tên đăng nhập và mật khẩu
+
             $table_admin = 'admin';
             $table_user = 'user';
+<<<<<<< HEAD
             $sql_admin = "SELECT * FROM $table_admin WHERE username = ? AND password = ?";
             $sql_user = "SELECT * FROM $table_user WHERE email = ? AND password = ?";
             $loginmodel = $this->load->model('loginmodel');
@@ -66,12 +68,20 @@ class login extends DController
             // Kiểm tra tài khoản và mật khẩu qua model
             $count_admin = $loginmodel->login($table_admin, $sql_admin, $username, $password);
             $count_user = $loginmodel->login($table_user, $sql_user, $username, $password);
+=======
+            $loginmodel = $this->load->model('loginmodel');
+
+            // Kiểm tra tài khoản và mật khẩu qua model
+            $count_admin = $loginmodel->login($table_admin, $username, $password);
+            $count_user = $loginmodel->login($table_user, $username, $password);
+>>>>>>> 53c4491f16c2d14491cd1613f0cd7ca3930416d8
 
             if ($count_admin === 0 && $count_user === 0) {
                 $message['msg'] = 'Tài khoản hoặc mật khẩu không đúng';
                 header('Location:' . BASE_URL . '/login?msg=' . urlencode(serialize($message)));
                 exit();
             } else {
+<<<<<<< HEAD
                 $result_admin = $loginmodel->getLoginAdmin($table_admin, $sql_admin, $username, $password);
                 $result_user = $loginmodel->getLoginUser($table_user, $sql_user, $username, $password);
                 if (!empty($result_admin) && isset($result_admin[0])) {
@@ -95,7 +105,42 @@ class login extends DController
                     $message['msg'] = 'Lỗi không xác định. Vui lòng thử lại.';
                     header('Location:' . BASE_URL . '/login?msg=' . urlencode(serialize($message)));
                     exit();
+=======
+                if ($count_admin > 0) {
+                    $result_admin = $loginmodel->getLoginAdmin($table_admin, $username, $password);
+                    if (!empty($result_admin) && isset($result_admin[0])) {
+                        // Đăng nhập thành công, khởi tạo session cho admin
+                        Session::init();
+                        Session::set('login', true);
+                        Session::set('admin', true);
+                        Session::set('username', $result_admin[0]['username']);
+                        Session::set('userid', $result_admin[0]['id_admin']);
+                        // Sau khi đăng nhập thành công, chuyển hướng về trang dashboard
+                        header('Location:' . BASE_URL . '/login/dashboard');
+                        exit();
+                    }
+>>>>>>> 53c4491f16c2d14491cd1613f0cd7ca3930416d8
                 }
+
+                if ($count_user > 0) {
+                    $result_user = $loginmodel->getLoginUser($table_user, $username, $password);
+                    if (!empty($result_user) && isset($result_user[0])) {
+                        // Đăng nhập thành công, khởi tạo session cho user
+                        Session::init();
+                        Session::set('login', true);
+                        Session::set('admin', false);
+                        Session::set('username', $result_user[0]['username']);
+                        Session::set('userid', $result_user[0]['id_user']);
+                        // Sau khi đăng nhập thành công, chuyển hướng về trang chủ
+                        header('Location:' . BASE_URL . '/');
+                        exit();
+                    }
+                }
+
+                // Nếu không tìm thấy tài khoản hợp lệ
+                $message['msg'] = 'Lỗi không xác định. Vui lòng thử lại.';
+                header('Location:' . BASE_URL . '/login?msg=' . urlencode(serialize($message)));
+                exit();
             }
         }
     }
