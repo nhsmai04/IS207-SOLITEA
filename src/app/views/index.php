@@ -250,7 +250,12 @@
                             <div class="col-lg-12">
                                 <div class="row g-4">
                                     <?php foreach ($fruits as $fruits): ?>
-                                        <div class="col-md-6 col-lg-4 col-xl-3">
+                                        <form action="<?php echo BASE_URL ?>/cart/addtocart" method="POST" class="col-md-6 col-lg-4 col-xl-3">
+                                            <input type="hidden" name="product_id" value="<?= htmlspecialchars($fruits['Id']) ?>">
+                                            <input type="hidden" name="product_name" value="<?= htmlspecialchars($fruits['Name']) ?>">
+                                            <input type="hidden" name="product_image" value="<?= htmlspecialchars($fruits['Image']) ?>">
+                                            <input type="hidden" name="product_price" value="<?= htmlspecialchars($fruits['Price']) ?>">
+                                            <input type="hidden" name="product_quantity" value="1">
                                             <div class="d-flex flex-column h-100 rounded position-relative fruite-item">
                                                 <div class="fruite-img" style="height: 200px;">
                                                     <img src="<?= htmlspecialchars($fruits['Image']) ?>" class="w-100 h-100" alt="<?= htmlspecialchars($fruits['Name']) ?>">
@@ -261,13 +266,15 @@
                                                     <p><?= htmlspecialchars($fruits['Description']) ?></p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$<?= htmlspecialchars($fruits['Price']) ?> / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">
-                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
-                                                        </a>
+                                                        <button type="submit" class="btn d-flex align-items-center border border-secondary rounded-pill px-3 text-primary">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                            <span class="flex-grow-1 text-primary">Add to cart</span>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+
+                                        </form>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
