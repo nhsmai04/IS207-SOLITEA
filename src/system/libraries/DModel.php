@@ -5,7 +5,7 @@ class DModel
     protected $db;
     public function __construct()
     {
-        $connect = 'mysql:host=localhost;dbname=pdo_is207;charset=utf8mb4';
+        $connect = 'mysql:host=localhost;dbname=pdo_is207;port=3307charset=utf8mb4';
         $user = 'root';
         $password = '';
 

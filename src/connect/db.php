@@ -2,7 +2,7 @@
 $host = 'localhost';
 $user = 'root';
 $password = '';
-$database = 'SOLI_TEA';
+$database = 'pdo_is207';
 
 $conn = new mysqli($host, $user, $password, $database);
 
