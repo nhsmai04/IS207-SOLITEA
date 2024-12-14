@@ -64,19 +64,7 @@
                 </li>
 
                 <!-- Sản phẩm -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Sản phẩm
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
-                        <li><a class="dropdown-item" href="#">Thêm</a></li>
-                        <li><a class="dropdown-item" href="#">Liệt kê</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Khác</a></li>
-                    </ul>
-                </li>
+
 
                 <!-- Đơn hàng -->
                 <li class="nav-item dropdown">

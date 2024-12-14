@@ -74,6 +74,7 @@ class login extends DController
                         // Đăng nhập thành công, khởi tạo session cho admin
                         Session::init();
                         Session::set('login', true);
+                        Session::set('admin', true);
                         Session::set('username', $result_admin[0]['username']);
                         Session::set('userid', $result_admin[0]['id_admin']);
                         // Sau khi đăng nhập thành công, chuyển hướng về trang dashboard
@@ -88,6 +89,7 @@ class login extends DController
                         // Đăng nhập thành công, khởi tạo session cho user
                         Session::init();
                         Session::set('login', true);
+                        Session::set('admin', false);
                         Session::set('username', $result_user[0]['username']);
                         Session::set('userid', $result_user[0]['id_user']);
                         // Sau khi đăng nhập thành công, chuyển hướng về trang chủ

@@ -23,7 +23,10 @@
     <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/template/css/bootstrap.min.css" rel="stylesheet">
     <!-- Template Stylesheet -->
     <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/template/css/dashboard.css" rel="stylesheet">
+    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Template Stylesheet -->
+    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/css/style.css" rel="stylesheet">
     <!-- Login Stylesheet -->
     <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/scss/login.scss" rel="stylesheet">
 </head>

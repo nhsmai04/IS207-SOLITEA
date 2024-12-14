@@ -15,12 +15,35 @@ class Database extends PDO
 
             $statement = $this->prepare($sql);
             foreach ($data as $key => $value) {
-                $statement->bindParam($key, $value);
+                $statement->bindValue(":$key", $value);
             }
             $statement->execute();
             return $statement->fetchAll($fetchStyle);
         } catch (PDOException $e) {
             echo "Lỗi truy vấn: " . $e->getMessage();
+            return false;
+        }
+    }
+    public function getCategoryByCond($table, $where, $fetchStyle = PDO::FETCH_ASSOC)
+    {
+        try {
+            $condition = '';
+            foreach ($where as $key => $val) {
+                if ($condition != '') {
+                    $condition .= ' AND ';
+                }
+                $condition .= " $key = :$key";
+            }
+            $sql = "SELECT DISTINCT Category FROM $table  WHERE $condition";
+            error_log("SQL Query: $sql"); // Kiem tra loi
+            $statement = $this->prepare($sql);
+            foreach ($where as $key => $val) {
+                $statement->bindValue(":$key", $val);
+            }
+            $statement->execute();
+            return $statement->fetchAll($fetchStyle);
+        } catch (PDOException $e) {
+            error_log("Update Error: " . $e->getMessage());
             return false;
         }
     }
