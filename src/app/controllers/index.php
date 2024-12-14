@@ -18,3 +18,4 @@ class index extends DController
         $this->load->view('index', $data);
     }
 }
+?>
