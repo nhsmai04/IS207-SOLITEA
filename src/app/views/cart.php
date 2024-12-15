@@ -17,6 +17,7 @@ $(document).on('click', '.delete-item-btn', function() {
                 $(`.delete-item-btn[data-id="${deleteId}"]`).closest('tr')
                     .remove(); // hoặc xóa item từ DOM
                 updateCartTotal()
+                $('#cart-count').text(response.total_items);
             } else {
                 alert(response.message);
             }
@@ -35,9 +36,9 @@ $(document).on('click', '.add-quantity-btn', function() {
     var button = $(this);
     var input = button.closest('.input-group').find('input');
     console.log(input.val());
-    var currentQuantity = parseInt(input.val()) || 0; // Đảm bảo là số
+    var currentQuantity = parseInt(input.val()) || 1; // Đảm bảo là số
     console.log(currentQuantity);
-    var newQuantity = currentQuantity;
+    var newQuantity = currentQuantity + 1;
 
     // Gửi yêu cầu AJAX để cập nhật số lượng
     $.ajax({
@@ -72,8 +73,8 @@ $(document).on('click', '.add-quantity-btn', function() {
 $(document).on('click', '.sub-quantity-btn', function() {
     var button = $(this);
     var input = button.closest('.input-group').find('input');
-    var currentQuantity = parseInt(input.val()) || 0; // Đảm bảo là số
-    var newQuantity = (currentQuantity > 1) ? currentQuantity : 1; // Không giảm dưới 1
+    var currentQuantity = parseInt(input.val()) || 1; // Đảm bảo là số
+    var newQuantity = (currentQuantity > 1) ? currentQuantity - 1 : 1; // Không giảm dưới 1
 
     // Gửi yêu cầu AJAX để cập nhật số lượng
     $.ajax({
@@ -81,7 +82,7 @@ $(document).on('click', '.sub-quantity-btn', function() {
         type: 'POST',
         data: {
             id: button.data('id'),
-            quantity: newQuantity
+            quantity: newQuantity,
         },
         dataType: 'json',
         success: function(response) {
@@ -160,10 +161,10 @@ function updateCartTotal() {
 
 <!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
-    <h1 class="text-center text-white display-6">Cart</h1>
+    <h1 class="text-center text-white display-6">Giỏ hàng</h1>
     <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="index">Home</a></li>
-        <li class="breadcrumb-item active text-white">Cart</li>
+        <li class="breadcrumb-item"><a href="index">Trang chủ</a></li>
+        <li class="breadcrumb-item active text-white">Giỏ hàng</li>
     </ol>
 </div>
 <!-- Single Page Header End -->
@@ -259,33 +260,33 @@ function updateCartTotal() {
             </table>
         </div>
         <div class="mt-5">
-            <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
-            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+            <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Nhập mã giảm">
+            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Áp dụng mã giảm
+                giá</button>
         </div>
         <div class="row g-4 justify-content-end">
             <div class="col-8"></div>
             <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
                 <div class="bg-light rounded">
                     <div class="p-4">
-                        <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
+                        <h1 class="display-6 mb-4">Hóa đơn</h1>
                         <div class="d-flex justify-content-between mb-4">
-                            <h5 class="mb-0 me-4">Subtotal:</h5>
+                            <h5 class="mb-0 me-4">Tổng</h5>
                             <p class="mb-0 cart-total"><?php echo number_format($total, 0, ',', '.') . 'đ'  ?></p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <h5 class="mb-0 me-4">Shipping</h5>
+                            <h5 class="mb-0 me-4">Tiền ship</h5>
                             <div class="">
-                                <p class="mb-0">Flat rate: $3.00</p>
+                                <p class="mb-0">0đ</p>
                             </div>
                         </div>
-                        <p class="mb-0 text-end">Shipping to Ukraine.</p>
                     </div>
                     <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                        <h5 class="mb-0 ps-4 me-4">Total</h5>
+                        <h5 class="mb-0 ps-4 me-4">Tổng hóa đơn</h5>
                         <p class="mb-0 pe-4 cart-total"><?php echo number_format($total, 0, ',', '.') . 'đ'  ?></p>
                     </div>
                     <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
-                        type="button">Proceed Checkout</button>
+                        type="button">Tiến hành thanh toán</button>
                 </div>
             </div>
         </div>

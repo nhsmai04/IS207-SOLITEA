@@ -32,6 +32,40 @@
 </head>
 
 <body>
+    <!-- Xu ly ajax cho add to cart -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+    $(document).on('click', '.btn-add-cart', function() {
+        var id = $(this).data('id');
+        var name = $(this).data('name');
+        var price = $(this).data('price');
+        var description = $(this).data('description');
+        var image = $(this).data('img');
+        $.ajax({
+            url: '<?= BASE_URL ?>/cart/addtocart',
+            type: 'POST',
+            data: {
+                product_id: id,
+                product_name: name,
+                product_price: price,
+                product_description: description,
+                product_image: image,
+                product_quantity: 1
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    alert(response.message);
+                    $('#cart-count').text(response.total_items);
+                } else {
+                    alert('Thêm sản phẩm thất bại');
+                }
+            }
+        });
+    })
+    </script>
+    <!-- Ket thuc xu ly ajax cho add to cart -->
 
     <!-- Spinner Start -->
     <div id="spinner"
@@ -42,7 +76,7 @@
 
 
     <!-- Navbar start -->
-    <?php include 'common/navbar.php'?>
+    <?php include 'common/navbar.php' ?>
     <!-- Navbar End -->
 
 
@@ -51,7 +85,7 @@
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content rounded-0">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tìm kiếm</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex align-items-center">
@@ -74,7 +108,6 @@
                 <div class="col-md-12 col-lg-7">
                     <h4 class="mb-3 text-secondary">TIỆM RAU CỦ QUẢ</h4>
                     <h1 class="mb-5 display-3 text-primary">2PM& Fruitables</h1>
-
                 </div>
                 <div class="col-md-12 col-lg-5">
                     <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
@@ -197,24 +230,15 @@
                             <div class="col-lg-12">
                                 <div class="row g-4">
                                     <?php foreach ($fruits as $fruit): ?>
-                                    <form action="<?php echo BASE_URL ?>/cart/addtocart" method="POST"
-                                        class="col-md-6 col-lg-4 col-xl-3">
-                                        <input type="hidden" name="product_id"
-                                            value="<?= htmlspecialchars($fruit['Id']) ?>">
-                                        <input type="hidden" name="product_name"
-                                            value="<?= htmlspecialchars($fruit['Name']) ?>">
-                                        <input type="hidden" name="product_image"
-                                            value="<?= htmlspecialchars($fruit['Image']) ?>">
-                                        <input type="hidden" name="product_price"
-                                            value="<?= htmlspecialchars($fruit['Price']) ?>">
-                                        <input type="hidden" name="product_quantity" value="1">
+                                    <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="d-flex flex-column h-100 rounded position-relative fruite-item">
                                             <div class="fruite-img" style="height: 200px;">
                                                 <img src="<?= htmlspecialchars($fruit['Image']) ?>" class="w-100 h-100"
                                                     alt="<?= htmlspecialchars($fruit['Name']) ?>">
                                             </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;"><?= htmlspecialchars($fruit['Type']) ?>
+                                            <div class=" text-white bg-secondary px-3 py-1 rounded
+                                                    position-absolute" style="top: 10px; left: 10px;">
+                                                <?= htmlspecialchars($fruit['Type']) ?>
                                             </div>
                                             <div
                                                 class="d-flex flex-column justify-content-between flex-grow-1 p-4 border border-secondary border-top-0 rounded-bottom">
@@ -223,125 +247,125 @@
                                                     <?= htmlspecialchars($fruit['Name']) ?>
                                                 </a>
                                                 <p><?= htmlspecialchars($fruit['Description']) ?></p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">
-                                                        <?= htmlspecialchars($fruit['Price']) ?>Đ / kg</p>
-                                                    <button type="submit"
-                                                        class="btn d-flex align-items-center border border-secondary rounded-pill px-3 text-primary">
-                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                        <span class="flex-grow-1 text-primary">Thêm vào giỏ hàng</span>
-                                                    </button>
-                                                </div>
+                                                <p class="text-dark fs-5 fw-bold mb-0">
+                                                    <?= htmlspecialchars($fruit['Price']) ?> VNĐ / kg</p>
+
+                                                <button type="submit"
+                                                    class="btn d-flex align-items-center border border-secondary rounded-pill px-3 text-primary btn-add-cart"
+                                                    data-id="<?= htmlspecialchars($fruit['Id']) ?>"
+                                                    data-name="<?= htmlspecialchars($fruit['Name']) ?>"
+                                                    data-img="<?= htmlspecialchars($fruit['Image']) ?>"
+                                                    data-price="<?= htmlspecialchars($fruit['Price']) ?>"
+                                                    data-description="<?= htmlspecialchars($fruit['Description']) ?>">
+                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                    <span class="flex-grow-1 text-primary">Thêm vào giỏ hàng</span>
+                                                </button>
                                             </div>
                                         </div>
 
-                                    </form>
+                                    </div>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div id="tab-2" class="tab-pane fade  p-0 ">
+                    <div id="tab-2" class="tab-pane fade p-0">
                         <div class="row g-4">
                             <div class="col-lg-12">
                                 <div class="row g-4">
-                                    <?php  foreach ($fruits as $fruit): ?>
+                                    <?php foreach ($fruits as $fruit): ?>
                                     <?php if ($fruit['Type'] == 'Rau'): ?>
-                                    <form action="<?php echo BASE_URL ?>/cart/addtocart" method="POST"
-                                        class="col-md-6 col-lg-4 col-xl-3">
-                                        <input type="hidden" name="product_id"
-                                            value="<?= htmlspecialchars($fruit['Id']) ?>">
-                                        <input type="hidden" name="product_name"
-                                            value="<?= htmlspecialchars($fruit['Name']) ?>">
-                                        <input type="hidden" name="product_image"
-                                            value="<?= htmlspecialchars($fruit['Image']) ?>">
-                                        <input type="hidden" name="product_price"
-                                            value="<?= htmlspecialchars($fruit['Price']) ?>">
-                                        <input type="hidden" name="product_quantity" value="1">
+                                    <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="d-flex flex-column h-100 rounded position-relative fruite-item">
                                             <div class="fruite-img" style="height: 200px;">
                                                 <img src="<?= htmlspecialchars($fruit['Image']) ?>" class="w-100 h-100"
                                                     alt="<?= htmlspecialchars($fruit['Name']) ?>">
                                             </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;"><?= htmlspecialchars($fruit['Type']) ?>
+                                            <div class=" text-white bg-secondary px-3 py-1 rounded
+                                                            position-absolute" style="top: 10px; left: 10px;">
+                                                <?= htmlspecialchars($fruit['Type']) ?>
                                             </div>
                                             <div
                                                 class="d-flex flex-column justify-content-between flex-grow-1 p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4><?= htmlspecialchars($fruit['Name']) ?></h4>
+                                                <a href="<?php echo BASE_URL ?>/shopDetail?id=<?= htmlspecialchars($fruit['Id']) ?>"
+                                                    class="text-decoration-none text-dark fw-bold fs-5">
+                                                    <?= htmlspecialchars($fruit['Name']) ?>
+                                                </a>
                                                 <p><?= htmlspecialchars($fruit['Description']) ?></p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">
-                                                        <?= htmlspecialchars($fruit['Price']) ?>Đ / kg</p>
-                                                    <button type="submit"
-                                                        class="btn d-flex align-items-center border border-secondary rounded-pill px-3 text-primary">
-                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                        <span class="flex-grow-1 text-primary">Thêm vào giỏ hàng</span>
-                                                    </button>
-                                                </div>
+                                                <p class="text-dark fs-5 fw-bold mb-0">
+                                                    <?= htmlspecialchars($fruit['Price']) ?> VNĐ / kg</p>
+
+                                                <button type="submit"
+                                                    class="btn d-flex align-items-center border border-secondary rounded-pill px-3 text-primary btn-add-cart"
+                                                    data-id="<?= htmlspecialchars($fruit['Id']) ?>"
+                                                    data-name="<?= htmlspecialchars($fruit['Name']) ?>"
+                                                    data-img="<?= htmlspecialchars($fruit['Image']) ?>"
+                                                    data-price="<?= htmlspecialchars($fruit['Price']) ?>"
+                                                    data-description="<?= htmlspecialchars($fruit['Description']) ?>">
+                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                    <span class="flex-grow-1 text-primary">Thêm vào giỏ hàng</span>
+                                                </button>
                                             </div>
                                         </div>
-                                    </form>
+
+                                    </div>
                                     <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div id="tab-3" class="tab-pane fade  p-0  ">
+                    <div id="tab-3" class="tab-pane fade p-0">
                         <div class="row g-4">
                             <div class="col-lg-12">
                                 <div class="row g-4">
-                                    <?php  foreach ($fruits as $fruit): ?>
+                                    <?php foreach ($fruits as $fruit): ?>
                                     <?php if ($fruit['Type'] == 'Quả'): ?>
-                                    <form action="<?php echo BASE_URL ?>/cart/addtocart" method="POST"
-                                        class="col-md-6 col-lg-4 col-xl-3">
-                                        <input type="hidden" name="product_id"
-                                            value="<?= htmlspecialchars($fruit['Id']) ?>">
-                                        <input type="hidden" name="product_name"
-                                            value="<?= htmlspecialchars($fruit['Name']) ?>">
-                                        <input type="hidden" name="product_image"
-                                            value="<?= htmlspecialchars($fruit['Image']) ?>">
-                                        <input type="hidden" name="product_price"
-                                            value="<?= htmlspecialchars($fruit['Price']) ?>">
-                                        <input type="hidden" name="product_quantity" value="1">
+                                    <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="d-flex flex-column h-100 rounded position-relative fruite-item">
                                             <div class="fruite-img" style="height: 200px;">
                                                 <img src="<?= htmlspecialchars($fruit['Image']) ?>" class="w-100 h-100"
                                                     alt="<?= htmlspecialchars($fruit['Name']) ?>">
                                             </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;"><?= htmlspecialchars($fruit['Type']) ?>
+                                            <div class=" text-white bg-secondary px-3 py-1 rounded
+                                                            position-absolute" style="top: 10px; left: 10px;">
+                                                <?= htmlspecialchars($fruit['Type']) ?>
                                             </div>
                                             <div
                                                 class="d-flex flex-column justify-content-between flex-grow-1 p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4><?= htmlspecialchars($fruit['Name']) ?></h4>
+                                                <a href="<?php echo BASE_URL ?>/shopDetail?id=<?= htmlspecialchars($fruit['Id']) ?>"
+                                                    class="text-decoration-none text-dark fw-bold fs-5">
+                                                    <?= htmlspecialchars($fruit['Name']) ?>
+                                                </a>
                                                 <p><?= htmlspecialchars($fruit['Description']) ?></p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">
-                                                        <?= htmlspecialchars($fruit['Price']) ?>Đ / kg</p>
-                                                    <button type="submit"
-                                                        class="btn d-flex align-items-center border border-secondary rounded-pill px-3 text-primary">
-                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                        <span class="flex-grow-1 text-primary">Thêm vào giỏ hàng</span>
-                                                    </button>
-                                                </div>
+                                                <p class="text-dark fs-5 fw-bold mb-0">
+                                                    <?= htmlspecialchars($fruit['Price']) ?> VNĐ / kg</p>
+
+                                                <button type="submit"
+                                                    class="btn d-flex align-items-center border border-secondary rounded-pill px-3 text-primary btn-add-cart"
+                                                    data-id="<?= htmlspecialchars($fruit['Id']) ?>"
+                                                    data-name="<?= htmlspecialchars($fruit['Name']) ?>"
+                                                    data-img="<?= htmlspecialchars($fruit['Image']) ?>"
+                                                    data-price="<?= htmlspecialchars($fruit['Price']) ?>"
+                                                    data-description="<?= htmlspecialchars($fruit['Description']) ?>">
+                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                    <span class="flex-grow-1 text-primary">Thêm vào giỏ hàng</span>
+                                                </button>
                                             </div>
                                         </div>
-                                    </form>
+
+                                    </div>
                                     <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
-
-
-
             </div>
         </div>
-    </div>
     </div>
     <!-- Fruits Shop End-->
 
@@ -416,7 +440,7 @@
                             style="width: 140px; height: 140px; top: 0; left: 0;">
                             <h1 style="font-size: 100px;">1</h1>
                             <div class="d-flex flex-column">
-                                <span class="h2 mb-0">12K</span>
+                                <span class="h2 mb-0">2K</span>
                                 <span class="h4 text-muted mb-0">kg</span>
                             </div>
                         </div>

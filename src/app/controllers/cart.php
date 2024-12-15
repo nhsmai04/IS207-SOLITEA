@@ -42,13 +42,15 @@ class cart extends DController
                 'Price' => $_POST['product_price'],
                 'Quantity' => $_POST['product_quantity'],
                 'Image' => $_POST['product_image']
-
             );
             $_SESSION['shoppingcart'][0] = $item;
-        } 
-        header('Location:' . BASE_URL . '/cart');
+        }
+         
+        echo json_encode(['success' => true, 'message' => 'Sản phẩm đã được thêm vào giỏ hàng', 'total_items' => count($_SESSION['shoppingcart'])]);
         exit;
     }
+
+
     public function deletecart()
     {
         Session::init();
@@ -65,7 +67,7 @@ class cart extends DController
                 }
                 // Reset lại các key của mảng sau khi xóa
                 $_SESSION['shoppingcart'] = array_values($_SESSION['shoppingcart']);
-                echo json_encode(['success' => true, 'message' => 'Item deleted successfully']);
+                echo json_encode(['success' => true, 'message' => 'Item deleted successfully', 'total_items' => count($_SESSION['shoppingcart'])]);
                 exit;
             }
         } else {
