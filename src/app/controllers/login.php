@@ -16,6 +16,10 @@ class login extends DController
 
     public function login()
     {
+        Session::init();
+        if(Session::get('login') == true){
+            header("Location:". BASE_URL ."/login/dashboard");
+        }
         $msg = isset($_GET['msg']) ? unserialize(urldecode($_GET['msg'])) : null;
         $this->load->view('cpanel/header');
         $this->load->view('cpanel/login', ['msg' => $msg]);
@@ -25,7 +29,6 @@ class login extends DController
     public function dashboard()
     {
         // Kiểm tra nếu người dùng chưa đăng nhập, chuyển hướng về trang login
-
         Session::checkSession();
         $this->load->view('cpanel/header');
         $this->load->view('cpanel/menu');
@@ -57,17 +60,52 @@ class login extends DController
 
             $table_admin = 'admin';
             $table_user = 'user';
+<<<<<<< HEAD
+            $sql_admin = "SELECT * FROM $table_admin WHERE username = ? AND password = ?";
+            $sql_user = "SELECT * FROM $table_user WHERE email = ? AND password = ?";
+            $loginmodel = $this->load->model('loginmodel');
+
+            // Kiểm tra tài khoản và mật khẩu qua model
+            $count_admin = $loginmodel->login($table_admin, $sql_admin, $username, $password);
+            $count_user = $loginmodel->login($table_user, $sql_user, $username, $password);
+=======
             $loginmodel = $this->load->model('loginmodel');
 
             // Kiểm tra tài khoản và mật khẩu qua model
             $count_admin = $loginmodel->login($table_admin, $username, $password);
             $count_user = $loginmodel->login($table_user, $username, $password);
+>>>>>>> 53c4491f16c2d14491cd1613f0cd7ca3930416d8
 
             if ($count_admin === 0 && $count_user === 0) {
                 $message['msg'] = 'Tài khoản hoặc mật khẩu không đúng';
                 header('Location:' . BASE_URL . '/login?msg=' . urlencode(serialize($message)));
                 exit();
             } else {
+<<<<<<< HEAD
+                $result_admin = $loginmodel->getLoginAdmin($table_admin, $sql_admin, $username, $password);
+                $result_user = $loginmodel->getLoginUser($table_user, $sql_user, $username, $password);
+                if (!empty($result_admin) && isset($result_admin[0])) {
+                    // Đăng nhập thành công, khởi tạo session
+                    Session::init();
+                    Session::set('login', true);
+                    Session::set('username', $result_admin[0]['username']);
+                    Session::set('userid', $result_admin[0]['id_admin']);
+                    // Sau khi đăng nhập thành công, chuyển hướng về trang dashboard
+                    header('Location:' . BASE_URL . '/login/dashboard');
+                    exit();
+                } else if (!empty($result_user) && isset($result_user[0])){
+                    Session::init();
+                    Session::set('login', true);
+                    Session::set('username', $result_admin[0]['username']);
+                    Session::set('userid', $result_admin[0]['id_admin']);
+                    header('Location:' . BASE_URL . '');
+                    exit();
+                }
+                else {
+                    $message['msg'] = 'Lỗi không xác định. Vui lòng thử lại.';
+                    header('Location:' . BASE_URL . '/login?msg=' . urlencode(serialize($message)));
+                    exit();
+=======
                 if ($count_admin > 0) {
                     $result_admin = $loginmodel->getLoginAdmin($table_admin, $username, $password);
                     if (!empty($result_admin) && isset($result_admin[0])) {
@@ -81,6 +119,7 @@ class login extends DController
                         header('Location:' . BASE_URL . '/login/dashboard');
                         exit();
                     }
+>>>>>>> 53c4491f16c2d14491cd1613f0cd7ca3930416d8
                 }
 
                 if ($count_user > 0) {

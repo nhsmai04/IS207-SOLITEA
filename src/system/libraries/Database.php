@@ -67,7 +67,7 @@ class Database extends PDO
         }
     }
 
-    public function affectedRow($sql, $username, $password)
+    public function affectedRow($table, $sql, $username, $password)
     {
         $statement = $this->prepare($sql);
         $statement->execute(array($username, $password));
