@@ -1,4 +1,121 @@
-<!DOCTYPE html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).on('click', '.delete-item-btn', function() {
+        const deleteId = $(this).data('id');
+
+        // Gửi yêu cầu AJAX
+        $.ajax({
+            url: '<?= BASE_URL ?>/cart/deletecart',
+            type: 'POST',
+            data: {
+                delete_id: deleteId
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    // Xóa item khỏi giao diện
+                    $(`.delete-item-btn[data-id="${deleteId}"]`).closest('tr').remove(); // hoặc xóa item từ DOM
+                    updateCartTotal()
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert('Có lỗi xảy ra khi xử lý yêu cầu.');
+            }
+        });
+    });
+
+
+    // Hàm tăng giảm số lượng sản phẩm
+
+    // Xử lý sự kiện tăng số lượng
+    $(document).on('click', '.add-quantity-btn', function() {
+        var button = $(this);
+        var input = button.closest('.input-group').find('input');
+        console.log(input.val());
+        var currentQuantity = parseInt(input.val()) || 0; // Đảm bảo là số
+        console.log(currentQuantity);
+        var newQuantity = currentQuantity;
+
+        // Gửi yêu cầu AJAX để cập nhật số lượng
+        $.ajax({
+            url: '<?= BASE_URL ?>/cart/updatecart',
+            type: 'POST',
+            data: {
+                id: button.data('id'),
+                quantity: newQuantity
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    input.val(newQuantity); // Cập nhật giá trị input
+
+                    var price = button.closest('tr').find('td:nth-child(3)').text().replace(/[^0-9]/g, ''); // Lấy giá trị cột giá từng sản phẩm (bỏ 'đ' và dấu ',')
+                    var subtotal = newQuantity * parseFloat(price); // Tính tổng giá trị từng sản phẩm
+                    button.closest('tr').find('td:nth-child(5)').html('<p class="mb-0 mt-4">' + new Intl.NumberFormat('vi-VN').format(subtotal) + 'đ');
+                    updateCartTotal(); // Cập nhật tổng giỏ hàng
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert('Có lỗi xảy ra khi xử lý yêu cầu.');
+            }
+        });
+    });
+
+    // Xử lý sự kiện giảm số lượng
+    $(document).on('click', '.sub-quantity-btn', function() {
+        var button = $(this);
+        var input = button.closest('.input-group').find('input');
+        var currentQuantity = parseInt(input.val()) || 0; // Đảm bảo là số
+        var newQuantity = (currentQuantity > 1) ? currentQuantity : 1; // Không giảm dưới 1
+
+        // Gửi yêu cầu AJAX để cập nhật số lượng
+        $.ajax({
+            url: '<?= BASE_URL ?>/cart/updatecart',
+            type: 'POST',
+            data: {
+                id: button.data('id'),
+                quantity: newQuantity
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    input.val(newQuantity); // Cập nhật giá trị input
+
+                    // Cập nhật tổng giá trị từng sản phẩm
+                    var price = button.closest('tr').find('td:nth-child(3)').text().replace(/[^0-9]/g, ''); // Lấy giá trị cột giá từng sản phẩm (bỏ 'đ' và dấu ',')
+                    var subtotal = newQuantity * parseFloat(price); // Tính tổng giá trị từng sản phẩm
+
+                    button.closest('tr').find('td:nth-child(5)').html('<p class="mb-0 mt-4">' + new Intl.NumberFormat('vi-VN').format(subtotal) + 'đ'); // Cập nhật giá trị cột tổng giá trị từng sản phẩm
+                    updateCartTotal(); // Cập nhật tổng giỏ hàng
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert('Có lỗi xảy ra khi xử lý yêu cầu.');
+            }
+        });
+    });
+
+
+
+    // Hàm tính lại tổng giá trị giỏ hàng
+    function updateCartTotal() {
+        let total = 0;
+        $('tr').each(function() {
+            const subtotalText = $(this).find('td:nth-child(5)').text().replace(/[^0-9]/g, ''); // Lấy giá trị cột tổng giá trị từng sản phẩm (bỏ 'đ' và dấu ',')
+            const subtotal = parseFloat(subtotalText) || 0; // Chuyển đổi sang số
+            total += subtotal;
+        });
+        $('.cart-total').text(new Intl.NumberFormat('vi-VN').format(total) + 'đ');
+    }
+</script>
+
+
 
 <!-- Spinner Start -->
 <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
@@ -129,38 +246,49 @@
                                     <p class="mb-0 mt-4"><?= htmlspecialchars($value['Name']) ?></p>
                                 </td>
                                 <td>
-                                    <p class="mb-0 mt-4"><?= htmlspecialchars($value['Price']) ?></p>
+                                    <p class="mb-0 mt-4" id="product_price"><?= htmlspecialchars($value['Price']) ?></p>
                                 </td>
                                 <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
+                                    <div class="input-group quantity mt-4" style="width: 150px;">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border sub-quantity-btn" data-id="<?= htmlspecialchars($value['Id']) ?>">
                                                 <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
-                                        <input type="text" min="1" class="form-control form-control-sm text-center border-0" value="<?= htmlspecialchars($value['Quantity']) ?>">
+                                        <input type="text" min="1" class="w-50 form-control form-control-sm text-center border-0" name="qty[<?php echo $value['Id'] ?>]" value="<?= htmlspecialchars($value['Quantity']) ?>" id="qty-<?= htmlspecialchars($value['Id']) ?>" readonly>
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border add-quantity-btn" data-id="<?= htmlspecialchars($value['Id']) ?>">
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
                                     </div>
+
                                 </td>
                                 <td>
                                     <p class="mb-0 mt-4"><?php echo number_format($sub_total, 0, ',', '.') . 'đ'  ?></p>
                                 </td>
                                 <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4">
+                                    <input type="hidden" name="delete_id" value="<?= htmlspecialchars($value['Id']) ?>">
+                                    <button type="submit" class="btn btn-md rounded-circle bg-light border mt-4 delete-item-btn" data-id="<?= htmlspecialchars($value['Id']) ?>">
                                         <i class="fa fa-times text-danger"></i>
                                     </button>
                                 </td>
+
 
                             </tr>
                     <?php
                         }
                     }
                     ?>
+
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <div class="d-flex justify-content-start">
+                                <a href="<?php echo BASE_URL ?>/index" class="btn border-secondary rounded-pill px-4 py-3 text-primary">Continue Shopping</a>
+                            </div>
+                </tfoot>
             </table>
         </div>
         <div class="mt-5">
@@ -175,7 +303,7 @@
                         <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
                         <div class="d-flex justify-content-between mb-4">
                             <h5 class="mb-0 me-4">Subtotal:</h5>
-                            <p class="mb-0"><?php echo number_format($total, 0, ',', '.') . 'đ'  ?></p>
+                            <p class="mb-0 cart-total"><?php echo number_format($total, 0, ',', '.') . 'đ'  ?></p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h5 class="mb-0 me-4">Shipping</h5>
@@ -187,7 +315,7 @@
                     </div>
                     <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                         <h5 class="mb-0 ps-4 me-4">Total</h5>
-                        <p class="mb-0 pe-4"><?php echo number_format($total, 0, ',', '.') . 'đ'  ?></p>
+                        <p class="mb-0 pe-4 cart-total"><?php echo number_format($total, 0, ',', '.') . 'đ'  ?></p>
                     </div>
                     <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
                 </div>

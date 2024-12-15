@@ -46,6 +46,41 @@ class cart extends DController
             );
             $_SESSION['shoppingcart'][0] = $item;
         }
-        header('Location:' . BASE_URL . '/cart');
+        echo json_encode(['success' => true, 'message' => 'Sản phẩm đã được thêm vào giỏ hàng']);
+        exit;
+    }
+    public function deletecart()
+    {
+        Session::init();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
+            $delete_id = $_POST['delete_id'];
+
+            // Kiểm tra xem giỏ hàng có tồn tại
+            if (isset($_SESSION['shoppingcart'])) {
+                foreach ($_SESSION['shoppingcart'] as $key => $value) {
+                    if ($value['Id'] == $delete_id) {
+                        unset($_SESSION['shoppingcart'][$key]);
+                        break;
+                    }
+                }
+                // Reset lại các key của mảng sau khi xóa
+                $_SESSION['shoppingcart'] = array_values($_SESSION['shoppingcart']);
+                echo json_encode(['success' => true, 'message' => 'Item deleted successfully']);
+                exit;
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Invalid request']);
+            exit;
+        }
+    }
+    public function updatecart()
+    {
+        Session::init();
+        foreach ($_SESSION['shoppingcart'] as $key => $value) {
+            if ($_SESSION['shoppingcart'][$key]['Id'] == $_POST['id']) {
+                $_SESSION['shoppingcart'][$key]['Quantity'] = $_POST['quantity'];
+            }
+        }
+        echo json_encode(['success' => true, 'message' => 'Cart updated successfully']);
     }
 }
