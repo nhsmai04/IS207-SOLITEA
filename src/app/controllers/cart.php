@@ -45,8 +45,8 @@ class cart extends DController
 
             );
             $_SESSION['shoppingcart'][0] = $item;
-        }
-        echo json_encode(['success' => true, 'message' => 'Sản phẩm đã được thêm vào giỏ hàng']);
+        } 
+        header('Location:' . BASE_URL . '/cart');
         exit;
     }
     public function deletecart()

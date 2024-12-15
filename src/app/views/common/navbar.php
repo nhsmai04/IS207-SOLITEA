@@ -1,3 +1,7 @@
+<?php
+session_start();
+$product_count = isset($_SESSION['shoppingcart']) ? count($_SESSION['shoppingcart']) : 0;
+?>
 <div class="container-fluid fixed-top">
     <div class="container topbar bg-primary d-none d-lg-block">
         <div class="d-flex justify-content-between">
@@ -15,7 +19,7 @@
         </div>
     </div>
     <div class="container px-0">
-        <nav class="navbar navbar-light bg-white navbar-expand-xl">
+        <nav class="navbar navbar-light bg-white navbar-expand-xl" style="box-shadow: none;">
             <a href="index" class="navbar-brand">
                 <h1 class="text-primary display-6">2PM& Fruitables</h1>
             </a>
@@ -46,7 +50,7 @@
                         <i class="fa fa-shopping-bag fa-2x"></i>
                         <span
                             class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                            style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                            style="top: -5px; left: 15px; height: 20px; min-width: 20px;"><?php echo $product_count; ?></span>
                     </a>
                     <a href="login" class="my-auto">
                         <i class="fas fa-user fa-2x"></i>
