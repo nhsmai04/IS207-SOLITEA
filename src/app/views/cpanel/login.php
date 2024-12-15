@@ -6,29 +6,6 @@
             echo '<p class="error-message">' . htmlspecialchars($msg['msg']) . '</p>';
         }
         ?>
-<<<<<<< HEAD
-
-        <h1 class="title">Đăng nhập</h1>
-        <div>
-        <p>Tên đăng nhập</p>
-        <input id="username" type="text" name="username" autocomplete="current-username" required>
-
-        </div>
-        <div>
-        <p>Mật khẩu</p>
-        <input id="password" type="password" name="password" autocomplete="current-password" required>
-        </div>
-
-        <div class="button">
-            <button type="submit" name="login" value="Login">Đăng nhập</button>
-        </div>
-
-        <div class="or"><div><p>Hoặc</p></div><hr></div>
-
-        <div class="register"><span>Chưa có tài khoản</span><a href=""><span style="color: blue">Đăng ký</span></a></div>
-    </form>
-</div>
-=======
         <h1 class="title">Đăng nhập</h1>
         <div>
             <p>Tên đăng nhập</p>
@@ -50,4 +27,3 @@
         <div class="register"><span>Chưa có tài khoản</span><a href=""><span style="color: blue">Đăng ký</span></a></div>
     </form>
 </div>
->>>>>>> 53c4491f16c2d14491cd1613f0cd7ca3930416d8

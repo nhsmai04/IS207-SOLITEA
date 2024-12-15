@@ -16,24 +16,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="/src/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link href="/src/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/template/css/bootstrap.min.css" rel="stylesheet">
     <!-- Template Stylesheet -->
     <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/template/css/dashboard.css" rel="stylesheet">
-<<<<<<< HEAD
-    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/scss/login.scss" rel="stylesheet">
-</head>
-
-<body>
-
-=======
 
     <!-- Login Stylesheet -->
     <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/scss/login.scss" rel="stylesheet">
+    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/scss/shopdetail.scss" rel="stylesheet">
 </head>
 
 <body>
->>>>>>> 53c4491f16c2d14491cd1613f0cd7ca3930416d8
