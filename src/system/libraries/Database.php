@@ -24,7 +24,7 @@ class Database extends PDO
             return false;
         }
     }
-    public function getItemByCond($table, $where, $fetchStyle = PDO::FETCH_ASSOC)
+    public function getCategoryByCond($table, $where, $fetchStyle = PDO::FETCH_ASSOC)
     {
         try {
             $condition = '';

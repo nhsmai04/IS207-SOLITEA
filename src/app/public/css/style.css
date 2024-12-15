@@ -353,7 +353,13 @@
     white-space: normal;
 }
 /*** Fruits End ***/
+ 
 
+/** ADD TO CART **/
+.add-to-cart{
+   background-color: none;
+   color: white;
+}
 
 /*** vesitable Start ***/
 .vesitable .vesitable-item {
