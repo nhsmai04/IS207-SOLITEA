@@ -24,6 +24,19 @@ class Database extends PDO
             return false;
         }
     }
+    public function getItemById($table, $id, $fetchStyle = PDO::FETCH_ASSOC){
+        try {
+            $sql = "SELECT * FROM $table WHERE id = :id";
+            $statement = $this->prepare($sql);
+            $statement->bindParam(':id', $id);
+            $statement->execute();
+            return $statement->fetch($fetchStyle);
+        } catch (PDOException $e) {
+            echo "Lỗi truy vấn: " . $e->getMessage();
+            return false;
+        }
+        
+    }
     public function getCategoryByCond($table, $where, $fetchStyle = PDO::FETCH_ASSOC)
     {
         try {

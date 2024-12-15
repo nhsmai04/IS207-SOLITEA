@@ -12,10 +12,9 @@ class categorymodel extends DModel
         $sql = "SELECT * FROM $table ORDER BY id DESC";
         return $this->db->getItem($sql);
     }
-    public function selectbyCon($table, $Con)
+    public function selectbyId($table, $id)
     {
-        $sql = "SELECT * FROM $table WHERE $Con";
-        return $this->db->getItem($sql);
+        return $this->db->getItemById($table, $id);
     }
     public function selectCategory($table, $Con)
     {

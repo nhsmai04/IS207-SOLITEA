@@ -10,11 +10,11 @@ class shopDetail extends DController
         parent::__construct();
     }
 
-    public function index()
+    public function index($id)
     {
-        $homemodel = $this->load->model('categorymodel');
+        $shopDetailModel = $this->load->model('categorymodel');
         $table = "product";
-        $data['fruits'] = $homemodel->selectallItem($table);
+        $data['fruit'] = $shopDetailModel->selectbyId($table, $id);
         $this->load->view('shop-detail', $data);
     }
 }

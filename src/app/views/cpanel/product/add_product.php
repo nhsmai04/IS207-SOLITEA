@@ -1,31 +1,31 @@
 <script>
-    function handleSelect(element) {
-        var type = element.value;
-        console.log(type);
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '<?php echo BASE_URL; ?>/category/getCategoriesByType?type=' + type, true);
+function handleSelect(element) {
+    var type = element.value;
+    console.log(type);
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '<?php echo BASE_URL; ?>/category/getCategoriesByType?type=' + type, true);
 
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4) {
-                var category = document.getElementById('category');
-                if (xhr.status == 200) {
-                    // Kiểm tra phản hồi nếu là HTML hợp lệ
-                    if (xhr.responseText.trim().startsWith('<option')) {
-                        category.innerHTML = xhr.responseText;
-                    } else {
-                        // Xử lý nếu dữ liệu trả về không phải là HTML hợp lệ
-                        console.error("Phản hồi không hợp lệ:", xhr.responseText);
-                        category.innerHTML = '<option value="">Lỗi tải danh mục</option>';
-                    }
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            var category = document.getElementById('category');
+            if (xhr.status == 200) {
+                // Kiểm tra phản hồi nếu là HTML hợp lệ
+                if (xhr.responseText.trim().startsWith('<option')) {
+                    category.innerHTML = xhr.responseText;
                 } else {
-                    // Lỗi HTTP
-                    console.error("Lỗi tải dữ liệu. Mã trạng thái: ", xhr.status);
+                    // Xử lý nếu dữ liệu trả về không phải là HTML hợp lệ
+                    console.error("Phản hồi không hợp lệ:", xhr.responseText);
                     category.innerHTML = '<option value="">Lỗi tải danh mục</option>';
                 }
+            } else {
+                // Lỗi HTTP
+                console.error("Lỗi tải dữ liệu. Mã trạng thái: ", xhr.status);
+                category.innerHTML = '<option value="">Lỗi tải danh mục</option>';
             }
-        };
-        xhr.send();
-    }
+        }
+    };
+    xhr.send();
+}
 </script>
 <?php
 if (!empty($_GET['msg'])) {
@@ -45,7 +45,7 @@ if (!empty($_GET['msg'])) {
     <div class="mb-3">
         <label class="form-label">Danh mục sản phẩm</label>
         <select name="type" class="form-control" onchange=handleSelect(this)>
-            <option value="Qủa" selected>Qủa</option>
+            <option value="Qủa" selected>Quả</option>
             <option value="Rau">Rau</option>
         </select>
     </div>
