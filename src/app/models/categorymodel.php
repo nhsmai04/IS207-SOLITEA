@@ -19,7 +19,7 @@ class categorymodel extends DModel
     }
     public function selectCategory($table, $Con)
     {
-        return $this->db->getItemByCond($table, $Con);
+        return $this->db->getCategoryByCond($table, $Con);
     }
     public function insertItem($table, $data)
     {
