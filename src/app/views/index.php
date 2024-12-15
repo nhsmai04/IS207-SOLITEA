@@ -29,6 +29,39 @@
 </head>
 
 <body>
+    <!-- Xu ly ajax cho add to cart -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).on('click', '.btn-add-cart', function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var price = $(this).data('price');
+            var description = $(this).data('description');
+            var image = $(this).data('img');
+            $.ajax({
+                url: '<?= BASE_URL ?>/cart/addtocart',
+                type: 'POST',
+                data: {
+                    product_id: id,
+                    product_name: name,
+                    product_price: price,
+                    product_description: description,
+                    product_image: image,
+                    product_quantity: 1
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        alert(response.message);
+                    } else {
+                        alert('Thêm sản phẩm thất bại');
+                    }
+                }
+            });
+        })
+    </script>
+    <!-- Ket thuc xu ly ajax cho add to cart -->
 
     <!-- Spinner Start -->
     <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
@@ -250,23 +283,24 @@
                             <div class="col-lg-12">
                                 <div class="row g-4">
                                     <?php foreach ($fruits as $fruits): ?>
-                                        <form action="<?php echo BASE_URL ?>/cart/addtocart" method="POST" class="col-md-6 col-lg-4 col-xl-3">
-                                            <input type="hidden" name="product_id" value="<?= htmlspecialchars($fruits['Id']) ?>">
-                                            <input type="hidden" name="product_name" value="<?= htmlspecialchars($fruits['Name']) ?>">
-                                            <input type="hidden" name="product_image" value="<?= htmlspecialchars($fruits['Image']) ?>">
-                                            <input type="hidden" name="product_price" value="<?= htmlspecialchars($fruits['Price']) ?>">
-                                            <input type="hidden" name="product_quantity" value="1">
+                                        <div class="col-md-6 col-lg-4 col-xl-3">
                                             <div class="d-flex flex-column h-100 rounded position-relative fruite-item">
                                                 <div class="fruite-img" style="height: 200px;">
-                                                    <img src="<?= htmlspecialchars($fruits['Image']) ?>" class="w-100 h-100" alt="<?= htmlspecialchars($fruits['Name']) ?>">
+                                                    <img src="<?= htmlspecialchars($fruits['Image']) ?>" class="w-100 h-100" alt="<?= htmlspecialchars($fruits['Name']) ?>" ">
                                                 </div>
-                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div class=" text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits
+                                                </div>
                                                 <div class="d-flex flex-column justify-content-between flex-grow-1 p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4><?= htmlspecialchars($fruits['Name']) ?></h4>
                                                     <p><?= htmlspecialchars($fruits['Description']) ?></p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$<?= htmlspecialchars($fruits['Price']) ?> / kg</p>
-                                                        <button type="submit" class="btn d-flex align-items-center border border-secondary rounded-pill px-3 text-primary">
+                                                        <button type="submit" class="btn d-flex align-items-center border border-secondary rounded-pill px-3 text-primary btn-add-cart"
+                                                            data-id="<?= htmlspecialchars($fruits['Id']) ?>"
+                                                            data-name="<?= htmlspecialchars($fruits['Name']) ?>"
+                                                            data-img="<?= htmlspecialchars($fruits['Image']) ?>"
+                                                            data-price="<?= htmlspecialchars($fruits['Price']) ?>"
+                                                            data-description="<?= htmlspecialchars($fruits['Description']) ?>">
                                                             <i class="fa fa-shopping-bag me-2 text-primary"></i>
                                                             <span class="flex-grow-1 text-primary">Add to cart</span>
                                                         </button>
@@ -274,7 +308,7 @@
                                                 </div>
                                             </div>
 
-                                        </form>
+                                        </div>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
