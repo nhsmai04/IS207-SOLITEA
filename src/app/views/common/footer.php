@@ -46,7 +46,7 @@
                     <h4 class="text-light mb-3">Thông tin</h4>
                     <a class="btn-link" href="">Giới thiệu</a>
                     <a class="btn-link" href="">Liên hệ</a>
-                    <a class="btn-link" href="">Chính sách bảo mật</a>
+                    <a class="btn-link" href="privacy">Chính sách bảo mật</a>
                     <a class="btn-link" href="">Điều khoản sử dụng</a>
                     <a class="btn-link" href="">FAQs</a>
                 </div>

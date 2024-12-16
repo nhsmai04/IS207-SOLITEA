@@ -30,14 +30,13 @@ $product_count = isset($_SESSION['shoppingcart']) ? count($_SESSION['shoppingcar
             <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
                     <a href="<?= BASE_URL ?>/index" class="nav-item nav-link active">Home</a>
-                    <a href="<?= BASE_URL ?>/shopDetail" class="nav-item nav-link">Shop Detail</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0 bg-secondary rounded-0">
                             <a href="<?= BASE_URL ?>/cart" class="dropdown-item">Cart</a>
-                            <a href="<?= BASE_URL ?>/chackout" class="dropdown-item">Chackout</a>
+                            <a href="<?= BASE_URL ?>/checkout" class="dropdown-item">Checkout</a>
                             <a href="<?= BASE_URL ?>/testimonial" class="dropdown-item">Testimonial</a>
-                            <a href="<?= BASE_URL ?>/404" class="dropdown-item">404 Page</a>
+                            <a href="<?= BASE_URL ?>/fo0fo" class="dropdown-item">404 Page</a>
                         </div>
                     </div>
                     <a href="<?= BASE_URL ?>/contact" class="nav-item nav-link">Contact</a>

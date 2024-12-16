@@ -1,42 +1,61 @@
-.login{
+.login {
     height: 100vh;
     display: flex;
     position: relative;
-    & form{
-        width: 700px;
+
+    & form {
+        width: 50%;
         margin: auto;
-        padding: 50px 80px;
-        box-shadow: 0 0 5px 5px rgba(0,0,0,0.1);
-        border-radius: 5px;
-        & .title{
+        height: fit-content;
+        padding: 30px 80px;
+        box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 60px;
+
+        & .title {
             text-transform: uppercase;
-            margin-top: 50px;
             text-align: center;
         }
-        & div{
+
+        & div {
             width: 100%;
-            margin-top: 50px;
-            & input{
+            margin-top: 30px;
+
+            & input {
                 width: 100%;
                 padding: 8px 20px;
-                border-radius: 5px;
+                border-radius: 20px;
                 border: 1px solid #d3d3d3; /* Add border */
+
+                &:focus {
+                    border-color: #81c408;
+                    box-shadow: 0 0 5px #81c408;
+                    outline: none; /* Bỏ viền outline mặc định */
+                }
             }
+            
         }
-        & .button{
+
+        & .button {
             width: fit-content;
             margin: auto;
-            margin-top: 40px;
-            & button{
+            margin-top: 30px;
+
+            & button {
                 width: fit-content;
-                padding: 5px 12px;
+                padding: 10px 20px;
                 border: none;
-                border-radius: 5px;
-                background-color: #007bff;
+                border-radius: 20px;
+                background-color: #81c408;
                 color: white;
+                font-weight: bolder;
+
+                &:hover {
+                    box-shadow: 1px 1px 5px rgba(64, 61, 61, 0.714);
+                }
             }
         }
-        & .or{
+
+        & .or {
             position: relative;
             height: 20px;
             display: flex;
@@ -44,34 +63,45 @@
             align-items: center;
             overflow: hidden;
             margin-top: 25px;
-            & hr{
+
+            & hr {
                 width: 100%;
             }
-            & div{
+
+            & div {
                 margin: 0;
                 width: 100%;
                 position: absolute;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                
-                & p{
+
+                & p {
+                    background-color: white;
                     margin: 0;
                     width: fit-content;
                     padding: 10px;
-                    background-color: white;
                 }
             }
-            
         }
-        & .register{
+
+        & .register {
+            text-align: center; /* Căn giữa nội dung */
             width: 100%;
-            position: relative;
-            margin-left: 100%;
-            transform: translateX(-50%);
             margin-top: 30px;
-            & a{
+
+            & a {
                 margin-left: 10px;
+                color: #81c408;
+                text-decoration: none;
+                font-weight: bold;
+
+                &:hover {
+                    background-color: #81c408;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 15px;
+                }
             }
         }
     }
