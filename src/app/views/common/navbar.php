@@ -12,7 +12,7 @@ $product_count = isset($_SESSION['shoppingcart']) ? count($_SESSION['shoppingcar
                         class="text-white">22525525@uit.gm.edu.vn</a></small>
             </div>
             <div class="top-link pe-2">
-                <a href="#" class="text-white"><small class="text-white mx-2">Chính sách bảo mật</small>/</a>
+                <a href="privacy" class="text-white"><small class="text-white mx-2">Chính sách bảo mật</small>/</a>
                 <a href="#" class="text-white"><small class="text-white mx-2">Điều khoản sử dụng</small>/</a>
                 <a href="#" class="text-white"><small class="text-white ms-2">Khuyến mãi</small></a>
             </div>
@@ -35,9 +35,9 @@ $product_count = isset($_SESSION['shoppingcart']) ? count($_SESSION['shoppingcar
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0 bg-secondary rounded-0">
                             <a href="<?= BASE_URL ?>/cart" class="dropdown-item">Cart</a>
-                            <a href="<?= BASE_URL ?>/chackout.html" class="dropdown-item">Chackout</a>
-                            <a href="<?= BASE_URL ?>/testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="<?= BASE_URL ?>/404.html" class="dropdown-item">404 Page</a>
+                            <a href="<?= BASE_URL ?>/chackout" class="dropdown-item">Chackout</a>
+                            <a href="<?= BASE_URL ?>/testimonial" class="dropdown-item">Testimonial</a>
+                            <a href="<?= BASE_URL ?>/404" class="dropdown-item">404 Page</a>
                         </div>
                     </div>
                     <a href="<?= BASE_URL ?>/contact" class="nav-item nav-link">Contact</a>
