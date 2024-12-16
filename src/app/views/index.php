@@ -118,7 +118,10 @@
         <div class="container py-5">
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-item text-center rounded bg-light p-4" 
+                        style="transition: transform 0.3s ease; height: 100%;"
+                        onmouseover="this.style.transform='scale(1.1)'" 
+                        onmouseout="this.style.transform='scale(1)'">
                         <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
                             <i class="fas fa-car-side fa-3x text-white"></i>
                         </div>
@@ -129,7 +132,10 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-item text-center rounded bg-light p-4" 
+                        style="transition: transform 0.3s ease; height: 100%;"
+                        onmouseover="this.style.transform='scale(1.1)'" 
+                        onmouseout="this.style.transform='scale(1)'">
                         <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
                             <i class="fas fa-user-shield fa-3x text-white"></i>
                         </div>
@@ -140,7 +146,10 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-item text-center rounded bg-light p-4" 
+                        style="transition: transform 0.3s ease; height: 100%;"
+                        onmouseover="this.style.transform='scale(1.1)'" 
+                        onmouseout="this.style.transform='scale(1)'">
                         <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
                             <i class="fas fa-exchange-alt fa-3x text-white"></i>
                         </div>
@@ -151,7 +160,10 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-item text-center rounded bg-light p-4" 
+                        style="transition: transform 0.3s ease; height: 100%;"
+                        onmouseover="this.style.transform='scale(1.1)'" 
+                        onmouseout="this.style.transform='scale(1)'">
                         <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
                             <i class="fa fa-phone-alt fa-3x text-white"></i>
                         </div>
@@ -165,6 +177,7 @@
         </div>
     </div>
     <!-- Featurs Section End -->
+
 
 
     <!-- Fruits Shop Start-->
