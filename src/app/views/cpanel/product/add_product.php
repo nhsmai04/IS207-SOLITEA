@@ -35,8 +35,8 @@ if (!empty($_GET['msg'])) {
     }
 }
 ?>
-<h3>Thêm danh mục sản phẩm</h3>
-<form action="<?php echo BASE_URL ?>\product\insert_category" method="POST">
+<h3 style="text-align:center; margin-top:20px">Thêm danh mục sản phẩm</h3>
+<form action="<?php echo BASE_URL ?>\product\insert_category" method="POST" style="margin: 20px 40px;">
     <div class="mb-3">
         <label class="form-label">Tên sản phẩm</label>
         <input type="text" name="name" class="form-control">

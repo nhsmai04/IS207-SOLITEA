@@ -32,15 +32,14 @@ $product_count = isset($_SESSION['shoppingcart']) ? count($_SESSION['shoppingcar
                 <div class="navbar-nav mx-auto">
                     <a href="<?= BASE_URL ?>/index" class="nav-item nav-link active">Trang chủ</a>
                     <a href="<?= BASE_URL ?>/introduce" class="nav-item nav-link">Giới thiệu</a>
+                    <a href="<?= BASE_URL ?>/contact" class="nav-item nav-link">Liên hệ</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Các trang</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Thêm</a>
                         <div class="dropdown-menu m-0 bg-secondary rounded-0">
                             <a href="<?= BASE_URL ?>/cart" class="dropdown-item">Giỏ hàng</a>
-                            <a href="<?= BASE_URL ?>/checkout" class="dropdown-item">Checkout</a>
                             <a href="<?= BASE_URL ?>/testimonial" class="dropdown-item">Đánh giá</a>
                         </div>
                     </div>
-                    <a href="<?= BASE_URL ?>/contact" class="nav-item nav-link">Liên hệ</a>
                 </div>
                 <div class="d-flex m-3 me-0">
                     <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"

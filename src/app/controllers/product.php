@@ -80,8 +80,11 @@ class product extends DController
     {
         $categorymodel = $this->load->model('categorymodel');
         $table = "product";
-        $cond = "Id = $id";
-        $data['productbyid'] = $categorymodel->selectbyCon($table, $cond);
+        //$cond = "Id = $id";
+
+        $data['productbyid'] = $categorymodel->selectbyId($table, $id);
+
+
         $this->load->view('cpanel/header');
         $this->load->view('cpanel/menu');
         $this->load->view('cpanel/product/update_product', $data);

@@ -28,10 +28,22 @@
     </div>
 
     <!-- About Us Section -->
-    <div class="container py-5">
-        <h2 class="text-center mb-4" style="font-size: 36px; font-weight: bold;">Giới thiệu về chúng tôi</h2>
-        <p class="text-center">2PM& Fruitables là cửa hàng chuyên cung cấp các sản phẩm rau củ hữu cơ, luôn đảm bảo chất lượng và sự tươi ngon. Chúng tôi cam kết mang đến cho khách hàng sản phẩm an toàn và tốt cho sức khỏe. Tại 2PM& Fruitables, chúng tôi cung cấp dịch vụ giao hàng tận nơi để bạn có thể dễ dàng mua sắm.</p>
+    <div class="container py-5 mt-3" style="background-color: #f9f9f9; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <h2 class="text-center mb-4" style="font-size: 36px; font-weight: bold; color: #343a40;">Giới thiệu về chúng tôi</h2>
+        <p class="text-justify" style="font-size: 18px; line-height: 1.8; color: #555;">
+            &emsp;&emsp;&emsp;<b class="text-primary">Cửa hàng uy tín, lâu năm</b>, đã thành lập từ năm 2004, là một trong những thương hiệu dẫn đầu trong lĩnh vực sản phẩm hữu cơ. 
+            Với hơn hai thập kỷ không ngừng nỗ lực và phát triển, chúng tôi đã đạt được nhiều chứng nhận và thành tích quan trọng từ các tổ chức uy tín trong và ngoài nước. 
+            Điều này khẳng định vị thế của cửa hàng trong việc sản xuất và kinh doanh các sản phẩm hữu cơ đạt chuẩn quốc tế, mang lại sự an tâm và tin tưởng cho người tiêu dùng.
+            <br><br>
+            &emsp;&emsp;&emsp;Chúng tôi tự hào cung cấp các sản phẩm được chọn lọc kỹ càng, trải qua quy trình sản xuất an toàn, không hóa chất độc hại, 
+            nhằm đảm bảo giá trị sức khỏe cao nhất cho khách hàng. 
+            Không chỉ dừng lại ở việc cung cấp thực phẩm, cửa hàng còn hướng đến việc lan tỏa lối sống xanh, bền vững, góp phần bảo vệ môi trường và xây dựng một cộng đồng khỏe mạnh hơn.
+            <br><br>
+            &emsp;&emsp;&emsp;Sự tin tưởng và ủng hộ của khách hàng chính là động lực để chúng tôi tiếp tục phát triển, không ngừng nâng cao chất lượng dịch vụ và sản phẩm, 
+            mang đến những trải nghiệm mua sắm thân thiện, tiện lợi và trọn vẹn nhất.
+        </p>
     </div>
+
 
     <!-- Features Section -->
     <div class="container py-5">
@@ -63,7 +75,7 @@
 
     <!-- Contact Section -->
     <div class="container">
-        <h2 class="text-center mb-2" style="font-size: 36px; font-weight: bold;">Liên hệ với chúng tôi<a href="contact" class=""> tại đây!!</a></h2>
+        <h2 class="text-center mb-2" style="font-size: 36px; font-weight: bold;">Liên hệ với chúng tôi<a href="contact" class=""> <u>tại đây!!</u></a></h2>
     </div>
 
 

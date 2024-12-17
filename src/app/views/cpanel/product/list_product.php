@@ -1,4 +1,4 @@
-<h3>Liệt kê danh mục sản phẩm</h3>
+<h3 style="text-align:center; margin-top:20px">Liệt kê danh mục sản phẩm</h3>
 <?php
 if (!empty($_GET['msg'])) {
     $msg = unserialize(urldecode($_GET['msg']));
@@ -7,14 +7,14 @@ if (!empty($_GET['msg'])) {
     }
 }
 ?>
-<table class="table table-stripped">
+<table class="table table-stripped" style="margin: 20px 0">
     <thead>
         <tr>
             <th scope="col">STT</th>
             <th scope="col">Tên trái cây</th>
             <th scope="col">Loại trái cây</th>
             <th scope="col">Mô tả</th>
-            <th scope="col">Gía tiền</th>
+            <th scope="col">Giá tiền</th>
         </tr>
     </thead>
     <tbody>
