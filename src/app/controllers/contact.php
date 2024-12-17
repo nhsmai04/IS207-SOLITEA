@@ -10,9 +10,7 @@ class contact extends DController
     // Hiển thị trang liên hệ
     public function index()
     {
-        $this->load->view('cpanel/header');
         $this->load->view('contact'); 
-        $this->load->view('cpanel/footer');
     }
 
     // Xử lý khi gửi form liên hệ

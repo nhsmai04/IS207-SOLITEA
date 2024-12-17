@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <?php include 'common/head.php'; ?>
-
     <body>
 
          <!-- Spinner Start -->
@@ -15,33 +14,12 @@
         <?php include 'common/navbar.php'; ?>
 
 
-        <!-- Modal Search Start -->
-        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-fullscreen">
-                <div class="modal-content rounded-0">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body d-flex align-items-center">
-                        <div class="input-group w-75 mx-auto d-flex">
-                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Search End -->
-
-
         <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
-            <h1 class="text-center text-white display-6">Phản hồi từ người dùng</h1>
+            <h1 class="text-center text-white display-6">Đánh giá</h1>
             <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active text-white">Phản hồi từ người dùng</li>
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item active text-white">Đánh giá</li>
             </ol>
         </div>
         <!-- Single Page Header End -->
@@ -84,7 +62,7 @@
                         <div class="position-relative">
                             <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
                             <div class="mb-4 pb-4 border-bottom border-secondary">
-                                <p class="mb-0">Tôi rất bất ngờ vì dịch vụ chuyên nghiệp và giá cả hợp lý. Trang web dễ sử dụng, có nhiều loại rau củ đa dạng và nguồn gốc rõ ràng. Tôi sẽ tiếp tục ủng hộ và giới thiệu cho bạn bè!
+                                <p class="mb-0">Tôi rất bất ngờ vì dịch vụ chuyên nghiệp và giá cả hợp lý. Trang web dễ sử dụng, có nhiều loại rau củ đa dạng và nguồn gốc rõ ràng. Tôi sẽ tiếp tục ủng hộ và giới thiệu cho bạn bè!<br>
                                 </p>
                             </div>
                             <div class="d-flex align-items-center flex-nowrap">
@@ -139,21 +117,6 @@
         <?php include 'common/footer.php'; ?>
 
 
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
-
-        
-    <!-- JavaScript Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
     </body>
 
 </html>

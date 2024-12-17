@@ -244,24 +244,44 @@
 
 
 /*** featurs Start ***/
-.featurs .featurs-item .featurs-icon {
+.featurs-item {
     position: relative;
-    width: 120px;
-    height: 120px;
+    overflow: hidden;
+    transition: transform 0.5s, box-shadow 0.5s; /* Hiệu ứng khi hover */
+    height: 100%; /* Đảm bảo chiều cao đồng nhất */
 }
 
-.featurs .featurs-item .featurs-icon::after {
-    content: "";
-    width: 35px;
-    height: 35px;
-    background: var(--bs-secondary);
-    position: absolute;
-    bottom: -10px;
-    transform: translate(-50%);
-    transform: rotate(45deg);
-    background: var(--bs-secondary);
-    
+.featurs-item:hover {
+    transform: scale(1.1); /* Phóng to khi hover */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Thêm bóng mượt */
 }
+
+.featurs-item img {
+    object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+    height: 250px; /* Chiều cao hình ảnh */
+    width: 100%; /* Chiều rộng chiếm toàn bộ */
+    transition: transform 0.5s;
+}
+
+.featurs-item img:hover {
+    transform: scale(1.2); /* Phóng to hình ảnh khi hover */
+}
+
+.featurs-content {
+    text-align: center;
+    padding: 15px;
+}
+
+.featurs-content h5 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.featurs-content h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 /*** featurs End ***/
 
 
@@ -301,7 +321,10 @@
 
 .fruite .fruite-item {
     height: 100%;
-    transition: 0.5s;
+    min-height: 400px; /* Tùy chỉnh chiều cao tối thiểu */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .fruite .fruite-item:hover {
     box-shadow: 0 0 55px rgba(0, 0, 0, 0.4);
@@ -309,19 +332,54 @@
 
 .fruite .fruite-item .fruite-img {
     overflow: hidden;
+    height: 200px;
     transition: 0.5s;
     border-radius: 10px 10px 0 0;
 }
 
 .fruite .fruite-item .fruite-img img {
+    object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+    height: 100%;
+    width: 100%;
     transition: 0.5s;
 }
 
 .fruite .fruite-item .fruite-img img:hover {
     transform: scale(1.3);
 }
-/*** Fruits End ***/
 
+
+
+/*TEST*/
+/* Nội dung */
+.fruite .fruite-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fruite .fruite-item .content {
+    flex-grow: 1; /* Đảm bảo nội dung giãn đều */
+    max-height: 80px; /* Giới hạn chiều cao mô tả */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fruite .fruite-item .content:hover {
+    overflow: visible;
+    white-space: normal;
+}
+/*** Fruits End ***/
+ 
+
+/** ADD TO CART **/
+.add-to-cart{
+   background-color: none;
+   color: white;
+}
 
 /*** vesitable Start ***/
 .vesitable .vesitable-item {
@@ -496,4 +554,3 @@
     line-height: 35px;
 }
 /*** Footer End ***/
-

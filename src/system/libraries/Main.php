@@ -75,7 +75,7 @@ class Main
     public function error($message)
     {
         echo "<h1>Error: $message</h1>";
-        include 'app/views/404.html';
+        include 'app/views/404.php';
         exit;
     }
 }

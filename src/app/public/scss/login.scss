@@ -1,56 +1,64 @@
 .login {
     height: 100vh;
     display: flex;
-    position: relative;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4; /* Thêm màu nền để làm nổi bật form */
 
     & form {
         width: 50%;
         margin: auto;
         height: fit-content;
         padding: 30px 80px;
-        box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         border-radius: 60px;
+        background-color: white; /* Nền trắng cho form */
 
         & .title {
             text-transform: uppercase;
             text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333; /* Màu chữ đậm và dễ nhìn hơn */
         }
 
         & div {
             width: 100%;
-            margin-top: 30px;
-
+            margin-top: 10px;
             & input {
                 width: 100%;
-                padding: 8px 20px;
+                padding: 10px 20px;
                 border-radius: 20px;
-                border: 1px solid #d3d3d3; /* Add border */
+                border: 1px solid #d3d3d3;
+                font-size: 1rem;
+                transition: all 0.3s ease-in-out;
 
                 &:focus {
                     border-color: #81c408;
                     box-shadow: 0 0 5px #81c408;
-                    outline: none; /* Bỏ viền outline mặc định */
+                    outline: none;
                 }
             }
-            
         }
 
         & .button {
             width: fit-content;
-            margin: auto;
-            margin-top: 30px;
+            margin: 30px auto;
 
             & button {
-                width: fit-content;
-                padding: 10px 20px;
+                padding: 12px 30px;
                 border: none;
                 border-radius: 20px;
                 background-color: #81c408;
                 color: white;
-                font-weight: bolder;
+                font-weight: bold;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
 
                 &:hover {
-                    box-shadow: 1px 1px 5px rgba(64, 61, 61, 0.714);
+                    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+                    background-color: #6d9e1f; /* Hiệu ứng đổi màu */
                 }
             }
         }
@@ -61,46 +69,44 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            margin-top: 25px;
+            margin-top: 30px;
 
             & hr {
                 width: 100%;
+                border-top: 1px solid #d3d3d3;
             }
 
             & div {
-                margin: 0;
-                width: 100%;
                 position: absolute;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                background-color: white;
+                padding: 0 10px;
 
                 & p {
-                    background-color: white;
                     margin: 0;
-                    width: fit-content;
-                    padding: 10px;
+                    font-size: 0.9rem;
+                    color: #666;
                 }
             }
         }
 
-        & .register {
-            text-align: center; /* Căn giữa nội dung */
-            width: 100%;
+        & .register-button {
+            text-align: center;
             margin-top: 30px;
 
             & a {
-                margin-left: 10px;
                 color: #81c408;
                 text-decoration: none;
                 font-weight: bold;
+                padding: 5px 10px;
+                border-radius: 15px;
+                transition: all 0.3s ease-in-out;
 
                 &:hover {
                     background-color: #81c408;
                     color: white;
-                    padding: 5px 10px;
-                    border-radius: 15px;
                 }
             }
         }

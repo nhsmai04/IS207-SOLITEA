@@ -1,3 +1,4 @@
+
 <?php
 class categorymodel extends DModel
 {
@@ -34,5 +35,9 @@ class categorymodel extends DModel
     {
 
         return $this->db->deleteItem($table, $cond);
+    }
+    public function selectallItemByQuery($table, $keyword){
+        
+        return $this->db->getallItemByQuery($table, $keyword);
     }
 }

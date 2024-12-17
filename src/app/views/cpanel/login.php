@@ -1,11 +1,9 @@
-<!-- Spinner Start -->
-<div id="spinner"
-    class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
-    <div class="spinner-grow text-primary" role="status"></div>
-</div>
-<!-- Spinner End -->
+
 <div class="login">
     <form autocomplete="off" action="<?php echo htmlspecialchars(BASE_URL); ?>/login/authentication_login" method="POST">
+        <a href="<?= BASE_URL ?>/index" class="navbar-brand">
+            <h1 class="text-primary display-6 text-center">2PM& Fruitables</h1>
+        </a>
         <h1 class="title text-primary display-6 text-center">Đăng nhập</h1>
         <div>
             <p>Tên đăng nhập</p>
@@ -29,7 +27,7 @@
             </div>
             <hr>
         </div>
-        <div class="register"><span>Chưa có tài khoản</span><a href="">Đăng ký</a></div>
+        <div class="register-button"><span>Chưa có tài khoản</span><a href="register">Đăng ký</a></div>
     </form>
 </div>
 

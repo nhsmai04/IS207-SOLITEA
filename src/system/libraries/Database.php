@@ -37,6 +37,19 @@ class Database extends PDO
         }
         
     }
+    public function getallItemByQuery($table, $keyword){ 
+        try{
+            $sql = "SELECT * FROM $table WHERE Name LIKE :keyword";
+            $statement = $this->prepare($sql);
+            $statement->bindValue(':keyword', "%$keyword%");
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Lỗi truy vấn: " . $e->getMessage();
+            return false;
+        }
+    }
+    
     public function getCategoryByCond($table, $where, $fetchStyle = PDO::FETCH_ASSOC)
     {
         try {

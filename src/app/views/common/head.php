@@ -1,3 +1,4 @@
+
 <head>
     <meta charset="utf-8">
     <title>Fruitables - Vegetable Website Template</title>
@@ -26,4 +27,5 @@
 
     <!-- Template Stylesheet -->
     <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Thư viện jQuery -->
 </head>

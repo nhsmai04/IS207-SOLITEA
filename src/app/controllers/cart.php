@@ -9,9 +9,7 @@ class cart extends DController
     public function index()
     {
         Session::init();
-        $this->load->view('cpanel/header');
         $this->load->view('cart');
-        $this->load->view('cpanel/footer');
     }
 
     public function addtocart()

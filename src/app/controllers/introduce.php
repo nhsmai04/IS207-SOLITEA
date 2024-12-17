@@ -1,6 +1,6 @@
 <?php
 
-class checkout extends DController
+class introduce extends DController
 {
     public function __construct()
     {
@@ -9,6 +9,6 @@ class checkout extends DController
 
     public function index()
     {
-        $this->load->view('checkout'); 
+        $this->load->view('introduce'); 
     }
 }

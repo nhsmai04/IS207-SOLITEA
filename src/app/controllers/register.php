@@ -1,50 +1,77 @@
 <?php
-# Chuyển trang viết ở class này
-
 class register extends DController
 {
-
     public function __construct()
     {
-        $data = array();
         parent::__construct();
     }
 
     public function index()
     {
-        $this->register();
-        $this->registerUser();
+        $msg = isset($_GET['msg']) ? unserialize(urldecode($_GET['msg'])) : null;
+        $this->load->view('cpanel/header');
+        $this->load->view('cpanel/register', ['msg' => $msg]);
+        $this->load->view('cpanel/footer');
     }
-    public function register()
+    public function register_user()
     {
-        $this->load->view('cpanel/register');
-    }
-    // public function authentication_login()
-    // {
-    //     $username = $_POST['username'];
-    //     $password = $_POST['password'];
-    //     $table = 'user';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $username = trim($_POST['username']);
+            $phone = trim($_POST['phone']);
+            $first_name = trim($_POST['first_name']);
+            $last_name = trim($_POST['last_name']);
+            $email = trim($_POST['email']);
+            $password = trim($_POST['password']);
+            $confirm_password = trim($_POST['confirm_password']);
+            $address = trim($_POST['address']);
+            $birthdate = trim($_POST['birthdate']);  // Ngày sinh
+            $gender = trim($_POST['gender']);        // Giới tính
 
-    //     $table_admin = 'admin';
-    //     $loginmodel = $this->load->model('loginmodel');
+            if (empty($username) || empty($phone) || empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($confirm_password) || empty($address) || empty($birthdate) || empty($gender)) {
+                $message['msg'] = 'Vui lòng điền đầy đủ thông tin.';
+                header('Location:' . BASE_URL . '/register?msg=' . urlencode(serialize($message)));
+                exit();
+            }
 
-    //     $count = $loginmodel->login($table_admin, $username, $password);
-    // }
+            if ($password !== $confirm_password) {
+                $message['msg'] = 'Mật khẩu không khớp.';
+                header('Location:' . BASE_URL . '/register?msg=' . urlencode(serialize($message)));
+                exit();
+            }
 
-    public function registerUser()
-    {
-        // $username = $_POST['username'];
-        // $password = $_POST['password'];
-        $table = 'user';
-        $registermodel = $this->load->model('categorymodel');
-        $data = array(
-            'id_user' => '3',
-            'name' => 'Nguyen van A',
-            'phone' => '0318312090',
-            'password' => 'aloalo',
-            'email' => 'alo@gmail.com',
-            'address' => 'Ha Noi',
-        );
-        $registermodel->insertItem($table, $data);
+            $registerModel = $this->load->model('registermodel');
+
+            // Kiểm tra xem người dùng đã tồn tại chưa
+            $result = $registerModel->checkUserExists($username, $email);
+            if ($result) {
+                $message['msg'] = 'Tài khoản hoặc email đã tồn tại.';
+                header('Location:' . BASE_URL . '/register?msg=' . urlencode(serialize($message)));
+                exit();
+            }
+
+            // Thêm dữ liệu người dùng vào cơ sở dữ liệu
+            $data = [
+                'username' => $username,
+                'phone' => $phone,
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'email' => $email,
+                'password' => $password,
+                'address' => $address,
+                'birthdate' => $birthdate,
+                'gender' => $gender
+            ];
+
+            $insertResult = $registerModel->insertUser($data);
+            if ($insertResult) {
+                $message['msg'] = 'Đăng ký thành công!';
+                header('Location:' . BASE_URL . '/login?msg=' . urlencode(serialize($message)));
+                exit();
+            } else {
+                $message['msg'] = 'Có lỗi xảy ra. Vui lòng thử lại.';
+                header('Location:' . BASE_URL . '/register?msg=' . urlencode(serialize($message)));
+                exit();
+            }
+        }
     }
 }

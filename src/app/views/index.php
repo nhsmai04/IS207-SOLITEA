@@ -52,27 +52,6 @@
     <!-- Navbar End -->
 
 
-    <!-- Modal Search Start -->
-    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex align-items-center">
-                    <div class="input-group w-75 mx-auto d-flex">
-                        <input type="search" class="form-control p-3" placeholder="keywords"
-                            aria-describedby="search-icon-1">
-                        <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal Search End -->
-
-
     <!-- Hero Start -->
     <div class="container-fluid py-5 mb-5 hero-header">
         <div class="container py-5">
@@ -476,95 +455,30 @@
 
 
     <!-- Tastimonial Start -->
-    <div class="container-fluid testimonial py-5">
-        <div class="container py-5">
-            <div class="testimonial-header text-center">
-                <h4 class="text-primary">Lời chứng thực của chúng tôi</h4>
-                <h1 class="display-5 mb-5 text-dark">Khách hàng đã đánh giá!</h1>
+    <div class="testimonial-header text-center">
+        <h4 class="text-primary">Lời chứng thực của chúng tôi</h4>
+        <h1 class="display-5 mb-5 text-dark">Khách hàng đã đánh giá!</h1>
+    </div>
+    <div class="testimonial-item img-border-radius bg-light rounded p-4 w-75 mx-auto">
+        <div class="position-relative">
+            <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
+            <div class="mb-4 pb-4 border-bottom border-secondary">
+                <p class="mb-0">Một kiệt tác giao thoa giữa thiết kế và chức năng, trang web rau củ không chỉ hấp dẫn về mặt thẩm mỹ với giao diện tươi mới, mà còn cung cấp thông tin chi tiết và dễ hiểu, khiến mỗi lượt truy cập đều trở thành một trải nghiệm đầy cảm hứng cho người yêu thực phẩm lành mạnh.
+                </p>
             </div>
-            <div class="owl-carousel testimonial-carousel">
-                <div class="testimonial-item img-border-radius bg-light rounded p-4">
-                    <div class="position-relative">
-                        <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
-                            style="bottom: 30px; right: 0;"></i>
-                        <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the
-                                industry's standard dummy text ever since the 1500s,
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center flex-nowrap">
-                            <div class="bg-secondary rounded">
-                                <img src="https://media.istockphoto.com/id/1311084168/vi/anh/ng%C6%B0%E1%BB%9Di-ph%E1%BB%A5-n%E1%BB%AF-ch%C3%A2u-%C3%A1-vui-m%E1%BB%ABng-nh%C3%ACn-v%C3%A0o-m%C3%A1y-%E1%BA%A3nh-v%E1%BB%9Bi-ti%E1%BA%BFng-c%C6%B0%E1%BB%9Di-ch%C3%A2n-th%C3%A0nh.jpg?s=612x612&w=0&k=20&c=v_N6GzRqNC4lDWsTkSCeZTz2wHDPipSOUydH0Bpuy_M="
-                                    class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
-                            </div>
-                            <div class="ms-4 d-block">
-                                <h4 class="text-dark">Minh Châu</h4>
-                                <p class="m-0 pb-3">Profession</p>
-                                <div class="d-flex pe-5">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="d-flex align-items-center flex-nowrap">
+                <div class="bg-secondary rounded">
+                    <img src="https://scontent.fsgn1-1.fna.fbcdn.net/v/t1.6435-1/118650115_107963001037294_5397116511421204011_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0ecb9b&_nc_eui2=AeEqXLX1_7ciW4zyaYAgKthAsA3ME9M4uxawDcwT0zi7FqRqPVd8jt6ef_GH0iNP25bPgB6-uyeQnReWyS9z8qrf&_nc_ohc=F7wARN21JJ8Q7kNvgFEvXK3&_nc_zt=24&_nc_ht=scontent.fsgn1-1.fna&_nc_gid=AwnW9hEzdijHaD8cgebdvpO&oh=00_AYCiI2OG6W8mI-glyu0Uxlz5lQzEvW64fVkl9aSl8Wqp-A&oe=6788944E" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
                 </div>
-                <div class="testimonial-item img-border-radius bg-light rounded p-4">
-                    <div class="position-relative">
-                        <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
-                            style="bottom: 30px; right: 0;"></i>
-                        <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the
-                                industry's standard dummy text ever since the 1500s,
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center flex-nowrap">
-                            <div class="bg-secondary rounded">
-                                <img src="https://cdnphoto.dantri.com.vn/C83F_N0VrqgawQ458TVSOi0kCLg=/zoom/1200_630/2024/10/12/mr-crop-1728706426776.jpeg"
-                                    class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
-                            </div>
-                            <div class="ms-4 d-block">
-                                <h4 class="text-dark">Nam Dương</h4>
-                                <p class="m-0 pb-3">Profession</p>
-                                <div class="d-flex pe-5">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-item img-border-radius bg-light rounded p-4">
-                    <div class="position-relative">
-                        <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
-                            style="bottom: 30px; right: 0;"></i>
-                        <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the
-                                industry's standard dummy text ever since the 1500s,
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center flex-nowrap">
-                            <div class="bg-secondary rounded">
-                                <img src="https://nhakhoaanna.com/wp-content/uploads/2019/08/NSBinhTinh_AF-1.jpg"
-                                    class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
-                            </div>
-                            <div class="ms-4 d-block">
-                                <h4 class="text-dark">Hạnh Nguyên</h4>
-                                <p class="m-0 pb-3">Profession</p>
-                                <div class="d-flex pe-5">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
+                <div class="ms-4 d-block">
+                    <h4 class="text-dark">トムさん</h4>
+                    <p class="m-0 pb-3">Nhà phê bình web cao cấp</p>
+                    <div class="d-flex pe-5">
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
                     </div>
                 </div>
             </div>
