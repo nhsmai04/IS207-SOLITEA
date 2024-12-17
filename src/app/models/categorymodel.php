@@ -40,4 +40,9 @@ class categorymodel extends DModel
         
         return $this->db->getallItemByQuery($table, $keyword);
     }
+    public function selectRelatedProducts($table, $id)
+    {
+        return $this->db->getItemRelated($table, $id);
+    }
+
 }

@@ -1,4 +1,4 @@
-<div class="col-md-6 col-lg-4 col-xl-3">
+<div>
     <div class="d-flex flex-column h-100 rounded position-relative fruite-item">
         <div class="fruite-img" style="height: 200px;">
             <img src="<?= htmlspecialchars($fruit['Image']) ?>" class="w-100 h-100"

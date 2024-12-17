@@ -37,6 +37,21 @@ class Database extends PDO
         }
         
     }
+    public function getItemRelated($table, $id)
+    {
+        try{
+            $sql = "SELECT * FROM $table WHERE id != :currentProductId ORDER BY id ASC LIMIT 20";
+            $statement = $this->prepare($sql);
+            $statement->bindParam(':currentProductId', $id, PDO::PARAM_INT);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } 
+        catch (PDOException $e){
+            echo "Lỗi truy vấn: " . $e->getMessage();
+            return false;
+        }
+    }
+
     public function getallItemByQuery($table, $keyword){ 
         try{
             $sql = "SELECT * FROM $table WHERE Name LIKE :keyword";
