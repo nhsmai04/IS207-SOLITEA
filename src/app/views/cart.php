@@ -1,4 +1,3 @@
-
 <?php include 'common/head.php'?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -167,8 +166,8 @@ function updateCartTotal() {
                 </thead>
                 <tbody>
                     <?php
-                    if (isset($_SESSION['shoppingcart'])) {
                         $total = 0;
+                    if (isset($_SESSION['shoppingcart'])) {
                         foreach ($_SESSION['shoppingcart'] as $key => $value) {
                             $sub_total = $value['Price'] * $value['Quantity'];
                             $total += $sub_total;
@@ -265,8 +264,11 @@ function updateCartTotal() {
                         <h5 class="mb-0 ps-4 me-4">Tổng hóa đơn</h5>
                         <p class="mb-0 pe-4 cart-total"><?php echo number_format($total, 0, ',', '.') . 'đ'  ?></p>
                     </div>
-                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
-                        type="button">Tiến hành thanh toán</button>
+                    <form action="<?php echo BASE_URL ?>/orders/order" method="POST">
+                        <button
+                            class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
+                            type="submit">Thanh toán</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -280,12 +282,3 @@ function updateCartTotal() {
 <!-- Footer End -->
 
 <!-- Copyright End -->
-
-
-
-<!-- Back to Top -->
-<a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
-        class="fa fa-arrow-up"></i></a>
-
-
-<!-- JavaScript Libraries -->

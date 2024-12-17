@@ -7,10 +7,11 @@ $product_count = isset($_SESSION['shoppingcart']) ? count($_SESSION['shoppingcar
     <div class="container topbar bg-primary d-none d-lg-block">
         <div class="d-flex justify-content-between">
             <div class="top-info ps-2">
-                <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="https://maps.app.goo.gl/QKzuJvX7wonKp63E9"
-                        class="text-white">Khu phố 6, Linh Trung</a></small>
-                <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="mailto:22525525@uit.gm.edu.vn"
-                        class="text-white">22525525@uit.gm.edu.vn</a></small>
+                <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a
+                        href="https://maps.app.goo.gl/QKzuJvX7wonKp63E9" class="text-white">Khu phố 6, Linh
+                        Trung</a></small>
+                <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a
+                        href="mailto:22525525@uit.gm.edu.vn" class="text-white">22525525@uit.gm.edu.vn</a></small>
             </div>
             <div class="top-link pe-2">
                 <a href="privacy" class="text-white"><small class="text-white mx-2">Chính sách bảo mật</small>/</a>
@@ -52,15 +53,29 @@ $product_count = isset($_SESSION['shoppingcart']) ? count($_SESSION['shoppingcar
                             style="top: -5px; left: 15px; height: 20px; min-width: 20px;"><?php echo $product_count; ?></span>
                     </a>
                     <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
-                        <!-- Icon User khi đã đăng nhập -->
-                        <a href="#" class="my-auto" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <!-- Icon User khi đã đăng nhập -->
+                    <!-- Icon User khi đã đăng nhập -->
+                    <div class="nav-item dropdown my-auto">
+                        <a href="#" class="nav-link dropdown-toggle" id="userMenu" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="fas fa-user fa-2x"></i>
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-end m-0 bg-primary rounded-0" aria-labelledby="userMenu">
+                            <li><a class="dropdown-item text-black" href="<?= BASE_URL ?>/orders">Xem hóa đơn</a></li>
+                            <li><a class="dropdown-item text-black" href="<?= BASE_URL ?>/profile">Xem profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-black" href="<?= BASE_URL ?>/login/logout">Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </div>
+
                     <?php else: ?>
-                        <!-- Icon Login khi chưa đăng nhập -->
-                        <a href="<?= BASE_URL ?>/login" class="my-auto">
-                            <i class="fas fa-sign-in-alt fa-2x"></i>
-                        </a>
+                    <!-- Icon Login khi chưa đăng nhập -->
+                    <a href="<?= BASE_URL ?>/login" class="my-auto">
+                        <i class="fas fa-sign-in-alt fa-2x"></i>
+                    </a>
                     <?php endif; ?>
                 </div>
             </div>

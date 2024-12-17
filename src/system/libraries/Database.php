@@ -92,7 +92,6 @@ class Database extends PDO
             return false;
         }
     }
-
     public function affectedRow($sql, $username, $password)
     {
         $statement = $this->prepare($sql);
@@ -156,5 +155,9 @@ class Database extends PDO
         $statement = $this->prepare($sql);
         $statement->execute(array($username, $password));
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getLastInsertId()
+    {
+        return $this->lastInsertId();
     }
 }
