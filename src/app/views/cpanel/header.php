@@ -30,7 +30,8 @@
     <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/css/style.css" rel="stylesheet">
     <!-- Login Stylesheet -->
     <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/scss/login.scss" rel="stylesheet">
-    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/scss/shopdetail.scss" rel="stylesheet">
+    <!-- Register Stylesheet -->
+    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/scss/register.scss" rel="stylesheet">
 </head>
 
 <body>

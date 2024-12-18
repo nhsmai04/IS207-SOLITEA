@@ -1,77 +1,113 @@
-.login{
+.login {
     height: 100vh;
     display: flex;
-    position: relative;
-    & form{
-        width: 700px;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4; /* Thêm màu nền để làm nổi bật form */
+
+    & form {
+        width: 50%;
         margin: auto;
-        padding: 50px 80px;
-        box-shadow: 0 0 5px 5px rgba(0,0,0,0.1);
-        border-radius: 5px;
-        & .title{
+        height: fit-content;
+        padding: 30px 80px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 60px;
+        background-color: white; /* Nền trắng cho form */
+
+        & .title {
             text-transform: uppercase;
-            margin-top: 50px;
             text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333; /* Màu chữ đậm và dễ nhìn hơn */
         }
-        & div{
+
+        & div {
             width: 100%;
-            margin-top: 50px;
-            & input{
+            margin-top: 10px;
+            & input {
                 width: 100%;
-                padding: 8px 20px;
-                border-radius: 5px;
-                border: 1px solid #d3d3d3; /* Add border */
+                padding: 10px 20px;
+                border-radius: 20px;
+                border: 1px solid #d3d3d3;
+                font-size: 1rem;
+                transition: all 0.3s ease-in-out;
+
+                &:focus {
+                    border-color: #81c408;
+                    box-shadow: 0 0 5px #81c408;
+                    outline: none;
+                }
             }
         }
-        & .button{
+
+        & .button {
             width: fit-content;
-            margin: auto;
-            margin-top: 40px;
-            & button{
-                width: fit-content;
-                padding: 5px 12px;
+            margin: 30px auto;
+
+            & button {
+                padding: 12px 30px;
                 border: none;
-                border-radius: 5px;
-                background-color: #007bff;
+                border-radius: 20px;
+                background-color: #81c408;
                 color: white;
+                font-weight: bold;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+                    background-color: #6d9e1f; /* Hiệu ứng đổi màu */
+                }
             }
         }
-        & .or{
+
+        & .or {
             position: relative;
             height: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            margin-top: 25px;
-            & hr{
+            margin-top: 30px;
+
+            & hr {
                 width: 100%;
+                border-top: 1px solid #d3d3d3;
             }
-            & div{
-                margin: 0;
-                width: 100%;
+
+            & div {
                 position: absolute;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                
-                & p{
+                background-color: white;
+                padding: 0 10px;
+
+                & p {
                     margin: 0;
-                    width: fit-content;
-                    padding: 10px;
-                    background-color: white;
+                    font-size: 0.9rem;
+                    color: #666;
                 }
             }
-            
         }
-        & .register{
-            width: 100%;
-            position: relative;
-            margin-left: 100%;
-            transform: translateX(-50%);
+
+        & .register-button {
+            text-align: center;
             margin-top: 30px;
-            & a{
-                margin-left: 10px;
+
+            & a {
+                color: #81c408;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 5px 10px;
+                border-radius: 15px;
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                    background-color: #81c408;
+                    color: white;
+                }
             }
         }
     }

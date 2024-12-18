@@ -1,72 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <title>Fruitables - Vegetable Website Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
-        rel="stylesheet">
-
-    <!-- Icon Font Stylesheet -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="http://localhost:8080/IS207-SOLITEA/src/app/public/css/style.css" rel="stylesheet">
-</head>
+<?php include 'common/head.php'; ?>
 
 <body>
     <!-- Xu ly ajax cho add to cart -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).on('click', '.btn-add-cart', function() {
-            var id = $(this).data('id');
-            var name = $(this).data('name');
-            var price = $(this).data('price');
-            var description = $(this).data('description');
-            var image = $(this).data('img');
-            $.ajax({
-                url: '<?= BASE_URL ?>/cart/addtocart',
-                type: 'POST',
-                data: {
-                    product_id: id,
-                    product_name: name,
-                    product_price: price,
-                    product_description: description,
-                    product_image: image,
-                    product_quantity: 1
-                },
-                dataType: 'json',
-                success: function(response) {
-                    if (response.success) {
-                        alert(response.message);
-                    } else {
-                        alert('Thêm sản phẩm thất bại');
-                    }
+    $(document).on('click', '.btn-add-cart', function() {
+        var id = $(this).data('id');
+        var name = $(this).data('name');
+        var price = $(this).data('price');
+        var description = $(this).data('description');
+        var image = $(this).data('img');
+        $.ajax({
+            url: '<?= BASE_URL ?>/cart/addtocart',
+            type: 'POST',
+            data: {
+                product_id: id,
+                product_name: name,
+                product_price: price,
+                product_description: description,
+                product_image: image,
+                product_quantity: 1
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    alert(response.message);
+                    $('#cart-count').text(response.total_items);
+                } else {
+                    alert('Thêm sản phẩm thất bại');
                 }
-            });
-        })
+            }
+        });
+    })
     </script>
     <!-- Ket thuc xu ly ajax cho add to cart -->
 
     <!-- Spinner Start -->
-    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+    <div id="spinner"
+        class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" role="status"></div>
     </div>
     <!-- Spinner End -->
@@ -77,37 +52,13 @@
     <!-- Navbar End -->
 
 
-    <!-- Modal Search Start -->
-    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex align-items-center">
-                    <div class="input-group w-75 mx-auto d-flex">
-                        <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                        <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal Search End -->
-
-
     <!-- Hero Start -->
     <div class="container-fluid py-5 mb-5 hero-header">
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-md-12 col-lg-7">
-                    <h4 class="mb-3 text-secondary">TIỆM TRÀ</h4>
-                    <h1 class="mb-5 display-3 text-primary">SOLI</h1>
-                    <div class="position-relative mx-auto">
-                        <input class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="number" placeholder="Search">
-                        <button type="submit" class="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100" style="top: 0; right: 25%;">Submit Now</button>
-                    </div>
+                    <h4 class="mb-3 text-secondary">TIỆM RAU CỦ QUẢ</h4>
+                    <h1 class="mb-5 display-3 text-primary">2PM& Fruitables</h1>
                 </div>
                 <div class="col-md-12 col-lg-5">
                     <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
@@ -123,11 +74,13 @@
                                 <a href="#" class="btn px-4 py-2 text-white rounded">Rau củ</a>
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
+                            data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselId"
+                            data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -144,7 +97,10 @@
         <div class="container py-5">
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-item text-center rounded bg-light p-4" 
+                        style="transition: transform 0.3s ease; height: 100%;"
+                        onmouseover="this.style.transform='scale(1.1)'" 
+                        onmouseout="this.style.transform='scale(1)'">
                         <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
                             <i class="fas fa-car-side fa-3x text-white"></i>
                         </div>
@@ -155,7 +111,10 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-item text-center rounded bg-light p-4" 
+                        style="transition: transform 0.3s ease; height: 100%;"
+                        onmouseover="this.style.transform='scale(1.1)'" 
+                        onmouseout="this.style.transform='scale(1)'">
                         <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
                             <i class="fas fa-user-shield fa-3x text-white"></i>
                         </div>
@@ -166,7 +125,10 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-item text-center rounded bg-light p-4" 
+                        style="transition: transform 0.3s ease; height: 100%;"
+                        onmouseover="this.style.transform='scale(1.1)'" 
+                        onmouseout="this.style.transform='scale(1)'">
                         <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
                             <i class="fas fa-exchange-alt fa-3x text-white"></i>
                         </div>
@@ -177,7 +139,10 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-item text-center rounded bg-light p-4" 
+                        style="transition: transform 0.3s ease; height: 100%;"
+                        onmouseover="this.style.transform='scale(1.1)'" 
+                        onmouseout="this.style.transform='scale(1)'">
                         <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
                             <i class="fa fa-phone-alt fa-3x text-white"></i>
                         </div>
@@ -191,6 +156,7 @@
         </div>
     </div>
     <!-- Featurs Section End -->
+
 
 
     <!-- Fruits Shop Start-->
@@ -227,43 +193,138 @@
                         <div class="row g-4">
                             <div class="col-lg-12">
                                 <div class="row g-4">
-                                    <?php foreach ($fruits as $fruits): ?>
-                                        <div class="col-md-6 col-lg-4 col-xl-3">
-                                            <div class="d-flex flex-column h-100 rounded position-relative fruite-item">
-                                                <div class="fruite-img" style="height: 200px;">
-                                                    <img src="<?= htmlspecialchars($fruits['Image']) ?>" class="w-100 h-100" alt="<?= htmlspecialchars($fruits['Name']) ?>" ">
-                                                </div>
-                                                <div class=" text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits
-                                                </div>
-                                                <div class="d-flex flex-column justify-content-between flex-grow-1 p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <a href="<?php echo BASE_URL ?>/shopDetail?id=<?= htmlspecialchars($fruits['Id']) ?>"
-                                                        class="text-decoration-none text-dark fw-bold fs-5">
-                                                        <?= htmlspecialchars($fruits['Name']) ?>
-                                                    </a>
-                                                    <p><?= htmlspecialchars($fruits['Description']) ?></p>
-                                                    <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">$<?= htmlspecialchars($fruits['Price']) ?> / kg</p>
-                                                        <button type="submit" class="btn d-flex align-items-center border border-secondary rounded-pill px-3 text-primary btn-add-cart"
-                                                            data-id="<?= htmlspecialchars($fruits['Id']) ?>"
-                                                            data-name="<?= htmlspecialchars($fruits['Name']) ?>"
-                                                            data-img="<?= htmlspecialchars($fruits['Image']) ?>"
-                                                            data-price="<?= htmlspecialchars($fruits['Price']) ?>"
-                                                            data-description="<?= htmlspecialchars($fruits['Description']) ?>">
-                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                            <span class="flex-grow-1 text-primary">Add to cart</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                    <?php foreach ($fruits as $fruit): ?>
+                                    <div class="col-md-6 col-lg-4 col-xl-3">
+                                        <div class="d-flex flex-column h-100 rounded position-relative fruite-item">
+                                            <div class="fruite-img" style="height: 200px;">
+                                                <img src="<?= htmlspecialchars($fruit['Image']) ?>" class="w-100 h-100"
+                                                    alt="<?= htmlspecialchars($fruit['Name']) ?>">
                                             </div>
+                                            <div class=" text-white bg-secondary px-3 py-1 rounded
+                                                    position-absolute" style="top: 10px; left: 10px;">
+                                                <?= htmlspecialchars($fruit['Type']) ?>
+                                            </div>
+                                            <div
+                                                class="d-flex flex-column justify-content-between flex-grow-1 p-4 border border-secondary border-top-0 rounded-bottom">
+                                                <a href="<?php echo BASE_URL ?>/shopDetail/index/<?= htmlspecialchars($fruit['Id']) ?>"
+                                                    class="text-decoration-none text-dark fw-bold fs-5">
+                                                    <?= htmlspecialchars($fruit['Name']) ?>
+                                                </a>
+                                                <p><?= htmlspecialchars($fruit['Description']) ?></p>
+                                                <p class="text-dark fs-5 fw-bold mb-0">
+                                                    <?= htmlspecialchars($fruit['Price']) ?> VNĐ / kg</p>
 
+                                                <button type="submit"
+                                                    class="btn d-flex align-items-center border border-secondary rounded-pill px-3 text-primary btn-add-cart"
+                                                    data-id="<?= htmlspecialchars($fruit['Id']) ?>"
+                                                    data-name="<?= htmlspecialchars($fruit['Name']) ?>"
+                                                    data-img="<?= htmlspecialchars($fruit['Image']) ?>"
+                                                    data-price="<?= htmlspecialchars($fruit['Price']) ?>"
+                                                    data-description="<?= htmlspecialchars($fruit['Description']) ?>">
+                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                    <span class="flex-grow-1 text-primary">Thêm vào giỏ hàng</span>
+                                                </button>
+                                            </div>
                                         </div>
+
+                                    </div>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div id="tab-2" class="tab-pane fade p-0">
+                        <div class="row g-4">
+                            <div class="col-lg-12">
+                                <div class="row g-4">
+                                    <?php foreach ($fruits as $fruit): ?>
+                                    <?php if ($fruit['Type'] == 'Rau'): ?>
+                                    <div class="col-md-6 col-lg-4 col-xl-3">
+                                        <div class="d-flex flex-column h-100 rounded position-relative fruite-item">
+                                            <div class="fruite-img" style="height: 200px;">
+                                                <img src="<?= htmlspecialchars($fruit['Image']) ?>" class="w-100 h-100"
+                                                    alt="<?= htmlspecialchars($fruit['Name']) ?>">
+                                            </div>
+                                            <div class=" text-white bg-secondary px-3 py-1 rounded
+                                                            position-absolute" style="top: 10px; left: 10px;">
+                                                <?= htmlspecialchars($fruit['Type']) ?>
+                                            </div>
+                                            <div
+                                                class="d-flex flex-column justify-content-between flex-grow-1 p-4 border border-secondary border-top-0 rounded-bottom">
+                                                <a href="<?php echo BASE_URL ?>/shopDetail/index/<?= htmlspecialchars($fruit['Id']) ?>"
+                                                    class="text-decoration-none text-dark fw-bold fs-5">
+                                                    <?= htmlspecialchars($fruit['Name']) ?>
+                                                </a>
+                                                <p><?= htmlspecialchars($fruit['Description']) ?></p>
+                                                <p class="text-dark fs-5 fw-bold mb-0">
+                                                    <?= htmlspecialchars($fruit['Price']) ?> VNĐ / kg</p>
 
+                                                <button type="submit"
+                                                    class="btn d-flex align-items-center border border-secondary rounded-pill px-3 text-primary btn-add-cart"
+                                                    data-id="<?= htmlspecialchars($fruit['Id']) ?>"
+                                                    data-name="<?= htmlspecialchars($fruit['Name']) ?>"
+                                                    data-img="<?= htmlspecialchars($fruit['Image']) ?>"
+                                                    data-price="<?= htmlspecialchars($fruit['Price']) ?>"
+                                                    data-description="<?= htmlspecialchars($fruit['Description']) ?>">
+                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                    <span class="flex-grow-1 text-primary">Thêm vào giỏ hàng</span>
+                                                </button>
+                                            </div>
+                                        </div>
 
+                                    </div>
+                                    <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-3" class="tab-pane fade p-0">
+                        <div class="row g-4">
+                            <div class="col-lg-12">
+                                <div class="row g-4">
+                                    <?php foreach ($fruits as $fruit): ?>
+                                    <?php if ($fruit['Type'] == 'Quả'): ?>
+                                    <div class="col-md-6 col-lg-4 col-xl-3">
+                                        <div class="d-flex flex-column h-100 rounded position-relative fruite-item">
+                                            <div class="fruite-img" style="height: 200px;">
+                                                <img src="<?= htmlspecialchars($fruit['Image']) ?>" class="w-100 h-100"
+                                                    alt="<?= htmlspecialchars($fruit['Name']) ?>">
+                                            </div>
+                                            <div class=" text-white bg-secondary px-3 py-1 rounded
+                                                            position-absolute" style="top: 10px; left: 10px;">
+                                                <?= htmlspecialchars($fruit['Type']) ?>
+                                            </div>
+                                            <div
+                                                class="d-flex flex-column justify-content-between flex-grow-1 p-4 border border-secondary border-top-0 rounded-bottom">
+                                                <a href="<?php echo BASE_URL ?>/shopDetail/index/<?= htmlspecialchars($fruit['Id']) ?>"
+                                                    class="text-decoration-none text-dark fw-bold fs-5">
+                                                    <?= htmlspecialchars($fruit['Name']) ?>
+                                                </a>
+                                                <p><?= htmlspecialchars($fruit['Description']) ?></p>
+                                                <p class="text-dark fs-5 fw-bold mb-0">
+                                                    <?= htmlspecialchars($fruit['Price']) ?> VNĐ / kg</p>
+
+                                                <button type="submit"
+                                                    class="btn d-flex align-items-center border border-secondary rounded-pill px-3 text-primary btn-add-cart"
+                                                    data-id="<?= htmlspecialchars($fruit['Id']) ?>"
+                                                    data-name="<?= htmlspecialchars($fruit['Name']) ?>"
+                                                    data-img="<?= htmlspecialchars($fruit['Image']) ?>"
+                                                    data-price="<?= htmlspecialchars($fruit['Price']) ?>"
+                                                    data-description="<?= htmlspecialchars($fruit['Description']) ?>">
+                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                    <span class="flex-grow-1 text-primary">Thêm vào giỏ hàng</span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                 </div>
@@ -283,8 +344,8 @@
                             <img src="img/featur-1.jpg" class="img-fluid rounded-top w-100" alt="">
                             <div class="px-4 rounded-bottom">
                                 <div class="service-content bg-primary text-center p-4 rounded">
-                                    <h5 class="text-white">Fresh Apples</h5>
-                                    <h3 class="mb-0">20% OFF</h3>
+                                    <h5 class="text-white">Sầu Riêng Ri6</h5>
+                                    <h3 class="mb-0">Sale 20%</h3>
                                 </div>
                             </div>
                         </div>
@@ -296,8 +357,8 @@
                             <img src="img/featur-2.jpg" class="img-fluid rounded-top w-100" alt="">
                             <div class="px-4 rounded-bottom">
                                 <div class="service-content bg-light text-center p-4 rounded">
-                                    <h5 class="text-primary">Tasty Fruits</h5>
-                                    <h3 class="mb-0">Free delivery</h3>
+                                    <h5 class="text-primary">Mua nhiều</h5>
+                                    <h3 class="mb-0">Free ship</h3>
                                 </div>
                             </div>
                         </div>
@@ -309,8 +370,8 @@
                             <img src="img/featur-3.jpg" class="img-fluid rounded-top w-100" alt="">
                             <div class="px-4 rounded-bottom">
                                 <div class="service-content bg-secondary text-center p-4 rounded">
-                                    <h5 class="text-white">Exotic Vegitable</h5>
-                                    <h3 class="mb-0">Discount 30$</h3>
+                                    <h5 class="text-white">Exotic Rau, quả</h5>
+                                    <h3 class="mb-0">Giảm 50%</h3>
                                 </div>
                             </div>
                         </div>
@@ -320,129 +381,6 @@
         </div>
     </div>
     <!-- Featurs End -->
-
-
-    <!-- Vesitable Shop Start-->
-    <div class="container-fluid vesitable py-5">
-        <div class="container py-5">
-            <h1 class="mb-0">Fresh Organic Vegetables</h1>
-            <div class="owl-carousel vegetable-carousel justify-content-center">
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Parsely</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-1.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Parsely</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-3.png" class="img-fluid w-100 rounded-top bg-light" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Banana</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-4.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Bell Papper</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Potatoes</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Parsely</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Potatoes</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Parsely</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Vesitable Shop End -->
 
 
     <!-- Banner Section Start-->
@@ -455,7 +393,8 @@
                         <p class="fw-normal display-3 text-dark mb-4">ở shop chúng tôi</p>
                         <p class="mb-4 text-dark">Luôn luôn có những sản phẩm, tươi ngon tuyệt đối được trồng trong một
                             không gian khép kín, hái tận vườn.</p>
-                        <a href="#buy" class="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">Mua ngay</a>
+                        <a href="#buy" class="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">Mua
+                            ngay</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -465,7 +404,7 @@
                             style="width: 140px; height: 140px; top: 0; left: 0;">
                             <h1 style="font-size: 100px;">1</h1>
                             <div class="d-flex flex-column">
-                                <span class="h2 mb-0">12K</span>
+                                <span class="h2 mb-0">2K</span>
                                 <span class="h4 text-muted mb-0">kg</span>
                             </div>
                         </div>
@@ -475,13 +414,6 @@
         </div>
     </div>
     <!-- Banner Section End -->
-
-
-    <!-- Bestsaler Product Start -->
-
-    <!-- Bestsaler Product End -->
-
-
     <!-- Fact Start -->
     <div class="container-fluid py-5">
         <div class="container">
@@ -519,90 +451,34 @@
             </div>
         </div>
     </div>
-    <!-- Fact Start -->
+    <!-- Fact end -->
 
 
     <!-- Tastimonial Start -->
-    <div class="container-fluid testimonial py-5">
-        <div class="container py-5">
-            <div class="testimonial-header text-center">
-                <h4 class="text-primary">Our Testimonial</h4>
-                <h1 class="display-5 mb-5 text-dark">Our Client Saying!</h1>
+    <div class="testimonial-header text-center">
+        <h4 class="text-primary">Lời chứng thực của chúng tôi</h4>
+        <h1 class="display-5 mb-5 text-dark">Khách hàng đã đánh giá!</h1>
+    </div>
+    <div class="testimonial-item img-border-radius bg-light rounded p-4 w-75 mx-auto">
+        <div class="position-relative">
+            <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
+            <div class="mb-4 pb-4 border-bottom border-secondary">
+                <p class="mb-0">Một kiệt tác giao thoa giữa thiết kế và chức năng, trang web rau củ không chỉ hấp dẫn về mặt thẩm mỹ với giao diện tươi mới, mà còn cung cấp thông tin chi tiết và dễ hiểu, khiến mỗi lượt truy cập đều trở thành một trải nghiệm đầy cảm hứng cho người yêu thực phẩm lành mạnh.
+                </p>
             </div>
-            <div class="owl-carousel testimonial-carousel">
-                <div class="testimonial-item img-border-radius bg-light rounded p-4">
-                    <div class="position-relative">
-                        <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
-                        <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center flex-nowrap">
-                            <div class="bg-secondary rounded">
-                                <img src="img/testimonial-1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
-                            </div>
-                            <div class="ms-4 d-block">
-                                <h4 class="text-dark">Client Name</h4>
-                                <p class="m-0 pb-3">Profession</p>
-                                <div class="d-flex pe-5">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="d-flex align-items-center flex-nowrap">
+                <div class="bg-secondary rounded">
+                    <img src="https://scontent.fsgn1-1.fna.fbcdn.net/v/t1.6435-1/118650115_107963001037294_5397116511421204011_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0ecb9b&_nc_eui2=AeEqXLX1_7ciW4zyaYAgKthAsA3ME9M4uxawDcwT0zi7FqRqPVd8jt6ef_GH0iNP25bPgB6-uyeQnReWyS9z8qrf&_nc_ohc=F7wARN21JJ8Q7kNvgFEvXK3&_nc_zt=24&_nc_ht=scontent.fsgn1-1.fna&_nc_gid=AwnW9hEzdijHaD8cgebdvpO&oh=00_AYCiI2OG6W8mI-glyu0Uxlz5lQzEvW64fVkl9aSl8Wqp-A&oe=6788944E" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
                 </div>
-                <div class="testimonial-item img-border-radius bg-light rounded p-4">
-                    <div class="position-relative">
-                        <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
-                        <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center flex-nowrap">
-                            <div class="bg-secondary rounded">
-                                <img src="img/testimonial-1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
-                            </div>
-                            <div class="ms-4 d-block">
-                                <h4 class="text-dark">Client Name</h4>
-                                <p class="m-0 pb-3">Profession</p>
-                                <div class="d-flex pe-5">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-item img-border-radius bg-light rounded p-4">
-                    <div class="position-relative">
-                        <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
-                        <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center flex-nowrap">
-                            <div class="bg-secondary rounded">
-                                <img src="img/testimonial-1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
-                            </div>
-                            <div class="ms-4 d-block">
-                                <h4 class="text-dark">Client Name</h4>
-                                <p class="m-0 pb-3">Profession</p>
-                                <div class="d-flex pe-5">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
+                <div class="ms-4 d-block">
+                    <h4 class="text-dark">トムさん</h4>
+                    <p class="m-0 pb-3">Nhà phê bình web cao cấp</p>
+                    <div class="d-flex pe-5">
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
                     </div>
                 </div>
             </div>
@@ -610,35 +486,13 @@
     </div>
     <!-- Tastimonial End -->
 
-
-    <!-- Footer Start -->
     <?php include 'common/footer.php'; ?>
-    <!-- Footer End -->
-
-    <!-- Copyright Start -->
-    <div class="container-fluid copyright bg-dark py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Your Site Name</a>, All right reserved.</span>
-                </div>
-                <div class="col-md-6 my-auto text-center text-md-end text-white">
-                    <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-                    <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-                    <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Copyright End -->
 
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
-
-
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
+            class="fa fa-arrow-up"></i></a>
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

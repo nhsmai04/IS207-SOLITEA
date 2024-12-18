@@ -1,0 +1,132 @@
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+
+    & form {
+        width: 70%;
+        margin: 40px auto;
+        padding: 40px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 60px;
+        background-color: white;
+        & .register-info-container{
+            display: flex;
+            flex-direction: row;
+            gap: 10%;
+            & .left, & .right {
+                width: 50%; /* Mỗi phần chiếm 1 nửa chiều rộng */
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            & .title {
+                text-transform: uppercase;
+                text-align: center;
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            & div {
+                margin-top: 20px;
+
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                & input, & select, & textarea {
+                    width: 100%;
+                    padding: 10px 20px;
+                    border-radius: 20px;
+                    border: 1px solid #d3d3d3;
+                    font-size: 1rem;
+                    transition: all 0.3s ease-in-out;
+                }
+
+                & input:focus, & select:focus, & textarea:focus {
+                    border-color: #81c408;
+                    box-shadow: 0 0 5px #81c408;
+                    outline: none;
+                }
+
+                & textarea {
+                    height: 100px;
+                    resize: vertical;
+                }
+            }
+        }
+        & .button {
+            width: fit-content;
+            margin: 30px auto;
+
+            & button {
+                padding: 12px 30px;
+                border: none;
+                border-radius: 25px;
+                background-color: #81c408;
+                color: white;
+                font-weight: bold;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+                    background-color: #6d9e1f;
+                }
+            }
+        }
+        & .or {
+            position: relative;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+
+            & hr {
+                width: 100%;
+                border-top: 1px solid #d3d3d3;
+            }
+
+            & div {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: white;
+                padding: 0 10px;
+                margin: 0;
+                width: fit-content;
+
+                & p {
+                    margin: 0;
+                    font-size: 0.9rem;
+                    color: #666;
+                }
+            }
+        }
+
+        & .login-button {
+            text-align: center;
+            margin-top: 30px;
+
+            & a {
+                color: #81c408;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 5px 10px;
+                border-radius: 15px;
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                    background-color: #81c408;
+                    color: white;
+                }
+            }
+        }
+    }
+}

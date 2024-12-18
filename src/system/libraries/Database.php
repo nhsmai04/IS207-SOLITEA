@@ -11,8 +11,6 @@ class Database extends PDO
     public function getItem($sql, $data = array(), $fetchStyle = PDO::FETCH_ASSOC)
     {
         try {
-
-
             $statement = $this->prepare($sql);
             foreach ($data as $key => $value) {
                 $statement->bindValue(":$key", $value);
@@ -24,6 +22,32 @@ class Database extends PDO
             return false;
         }
     }
+    public function getItemById($table, $id, $fetchStyle = PDO::FETCH_ASSOC){
+        try {
+            $sql = "SELECT * FROM $table WHERE id = :id";
+            $statement = $this->prepare($sql);
+            $statement->bindParam(':id', $id);
+            $statement->execute();
+            return $statement->fetch($fetchStyle);
+        } catch (PDOException $e) {
+            echo "Lỗi truy vấn: " . $e->getMessage();
+            return false;
+        }
+        
+    }
+    public function getallItemByQuery($table, $keyword){ 
+        try{
+            $sql = "SELECT * FROM $table WHERE Name LIKE :keyword";
+            $statement = $this->prepare($sql);
+            $statement->bindValue(':keyword', "%$keyword%");
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Lỗi truy vấn: " . $e->getMessage();
+            return false;
+        }
+    }
+    
     public function getCategoryByCond($table, $where, $fetchStyle = PDO::FETCH_ASSOC)
     {
         try {
@@ -66,8 +90,7 @@ class Database extends PDO
             return false;
         }
     }
-
-    public function affectedRow($table, $sql, $username, $password)
+    public function affectedRow($sql, $username, $password)
     {
         $statement = $this->prepare($sql);
         $statement->execute(array($username, $password));
@@ -130,5 +153,35 @@ class Database extends PDO
         $statement = $this->prepare($sql);
         $statement->execute(array($username, $password));
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getLastInsertId()
+    {
+        return $this->lastInsertId();
+    }
+
+    public function getUserByUsername($username)
+    {
+        // Sử dụng PDO để thực hiện truy vấn
+        $sql = "SELECT * FROM users WHERE username = :username LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+
+        // Trả về dữ liệu người dùng dưới dạng mảng
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function getItemRelated($table, $id)
+    {
+        try{
+            $sql = "SELECT * FROM $table WHERE id != :currentProductId ORDER BY id ASC LIMIT 20";
+            $statement = $this->prepare($sql);
+            $statement->bindParam(':currentProductId', $id, PDO::PARAM_INT);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } 
+        catch (PDOException $e){
+            echo "Lỗi truy vấn: " . $e->getMessage();
+            return false;
+        }
     }
 }
