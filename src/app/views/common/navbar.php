@@ -14,9 +14,7 @@ $product_count = isset($_SESSION['shoppingcart']) ? count($_SESSION['shoppingcar
                         href="mailto:22525525@uit.gm.edu.vn" class="text-white">22525525@uit.gm.edu.vn</a></small>
             </div>
             <div class="top-link pe-2">
-                <a href="privacy" class="text-white"><small class="text-white mx-2">Chính sách bảo mật</small>/</a>
-                <a href="#" class="text-white"><small class="text-white mx-2">Điều khoản sử dụng</small>/</a>
-                <a href="#" class="text-white"><small class="text-white ms-2">Khuyến mãi</small></a>
+                <a href="privacy" class="text-white"><small class="text-white mx-2">Chính sách bảo mật</small></a>
             </div>
         </div>
     </div>

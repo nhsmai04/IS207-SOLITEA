@@ -51,8 +51,6 @@
                     <a class="btn-link" href="introduce">Giới thiệu</a>
                     <a class="btn-link" href="contact">Liên hệ</a>
                     <a class="btn-link" href="privacy">Chính sách bảo mật</a>
-                    <a class="btn-link" href="">Điều khoản sử dụng</a>
-                    <a class="btn-link" href="">FAQs</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">

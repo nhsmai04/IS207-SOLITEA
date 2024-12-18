@@ -170,4 +170,18 @@ class Database extends PDO
         // Trả về dữ liệu người dùng dưới dạng mảng
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function getItemRelated($table, $id)
+    {
+        try{
+            $sql = "SELECT * FROM $table WHERE id != :currentProductId ORDER BY id ASC LIMIT 20";
+            $statement = $this->prepare($sql);
+            $statement->bindParam(':currentProductId', $id, PDO::PARAM_INT);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } 
+        catch (PDOException $e){
+            echo "Lỗi truy vấn: " . $e->getMessage();
+            return false;
+        }
+    }
 }
