@@ -40,6 +40,7 @@ class ordersmodel extends DModel
             SELECT orders.*, user.username AS username
             FROM orders
             LEFT JOIN user ON orders.id_user = user.id_user
+            ORDER BY id DESC
         ";
 
         // Sử dụng PDO để thực thi truy vấn
@@ -52,7 +53,7 @@ class ordersmodel extends DModel
 
     public function updateOrderStatus($order_id, $status) {
         // Cập nhật trạng thái trong bảng orders
-        $sql = "UPDATE orders SET status = :status WHERE id = :order_id";
+        $sql = "UPDATE orders SET status = :status WHERE id = :order_id ";
         
         // Sử dụng PDO để chuẩn bị câu lệnh SQL
         $statement = $this->db->prepare($sql);
