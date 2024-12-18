@@ -75,7 +75,7 @@ CREATE TABLE `orders` (
   `id_user` int(11) NOT NULL,
   `order_date` datetime DEFAULT current_timestamp(),
   `total_price` int NOT NULL,
-  `status` varchar(50) DEFAULT 'pending'
+  `status` varchar(50) DEFAULT 'Đã đặt'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

@@ -1,31 +1,61 @@
-<?php include 'common/head.php'?>
+<?php
+session_start();
+include 'common/head.php';
+?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).on('click', '.delete-item-btn', function() {
-    const deleteId = $(this).data('id');
+$(document).ready(function() {
+    $('#thanhtoan').click(function(event) {
+        event.preventDefault(); // Ngăn chặn form submit mặc định
 
-    // Gửi yêu cầu AJAX
-    $.ajax({
-        url: '<?= BASE_URL ?>/cart/deletecart',
-        type: 'POST',
-        data: {
-            delete_id: deleteId
-        },
-        dataType: 'json',
-        success: function(response) {
-            if (response.success) {
-                // Xóa item khỏi giao diện
-                $(`.delete-item-btn[data-id="${deleteId}"]`).closest('tr')
-                    .remove(); // hoặc xóa item từ DOM
-                updateCartTotal()
-                $('#cart-count').text(response.total_items);
-            } else {
-                alert(response.message);
-            }
-        },
-        error: function() {
-            alert('Có lỗi xảy ra khi xử lý yêu cầu.');
+        <?php if (!isset($_SESSION['userid'])) { ?>
+        // Nếu người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
+        alert('Bạn cần đăng nhập để thanh toán');
+        window.location.href = '<?= BASE_URL ?>/login';
+        <?php } else { ?>
+        // Nếu người dùng đã đăng nhập, xác nhận thanh toán
+        var wantToPay = confirm('Bạn có chắc chắn muốn thanh toán không?');
+        if (wantToPay) {
+            // Gửi yêu cầu AJAX đến controller orders/order
+            $.ajax({
+                url: '<?= BASE_URL ?>/orders/order',
+                type: 'POST',
+                data: {
+                    // Dữ liệu cần thiết để xử lý đơn hàng
+                },
+                success: function(response) {
+                    // Xử lý phản hồi từ server
+                    console.log(response);
+                    if (response.error) {
+                        alert(response.error);
+                    } else {
+                        alert('Đơn hàng của bạn đã được xử lý thành công');
+                        window.location.href = '<?= BASE_URL ?>/orders';
+                    }
+                },
+                error: function() {
+                    alert('Có lỗi xảy ra khi xử lý đơn hàng của bạn');
+                }
+            });
         }
+        <?php } ?>
+    });
+
+    $(document).on('click', '.delete-item-btn', function() {
+        const deleteId = $(this).data('id');
+
+        // Gửi yêu cầu AJAX
+        $.ajax({
+            url: '<?= BASE_URL ?>/cart/deletecart',
+            type: 'POST',
+            data: {
+                id: deleteId
+            },
+            success: function(response) {
+                // Xử lý phản hồi từ server
+                location.reload(); // Tải lại trang sau khi xóa sản phẩm
+            }
+        });
     });
 });
 
@@ -264,11 +294,13 @@ function updateCartTotal() {
                         <h5 class="mb-0 ps-4 me-4">Tổng hóa đơn</h5>
                         <p class="mb-0 pe-4 cart-total"><?php echo number_format($total, 0, ',', '.') . 'đ'  ?></p>
                     </div>
-                    <form action="<?php echo BASE_URL ?>/orders/order" method="POST">
-                        <button
+
+                    <form id="checkout-form" action="<?php echo BASE_URL ?>/orders/order" method="POST">
+                        <button id="thanhtoan"
                             class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
                             type="submit">Thanh toán</button>
                     </form>
+
                 </div>
             </div>
         </div>

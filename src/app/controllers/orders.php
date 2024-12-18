@@ -42,7 +42,7 @@ class orders extends DController
                     'id_user' => $user_id,
                     'order_date' => date('Y-m-d H:i:s'),
                     'total_price' => $total_price,
-                    'status' => 'Pending'
+                    'status' => 'Đã đặt hàng'
                 );
 
                 // Lưu đơn hàng vào cơ sở dữ liệu
