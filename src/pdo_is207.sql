@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th12 17, 2024 lúc 01:53 PM
+-- Thời gian đã tạo: Th12 18, 2024 lúc 07:42 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `pdo_is207`
 --
-use pdo_is207;
+
 -- --------------------------------------------------------
 
 --
@@ -28,7 +28,7 @@ use pdo_is207;
 --
 
 CREATE TABLE `admin` (
-  `id_admin` int(11) NOT NULL Primary key,
+  `id_admin` int(11) NOT NULL,
   `username` varchar(200) NOT NULL,
   `password` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -50,19 +50,12 @@ INSERT INTO `admin` (`id_admin`, `username`, `password`) VALUES
 --
 
 CREATE TABLE `feedback` (
-  `id` int(11) NOT NULL Primary key,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `feedback` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `feedback`
---
-
-INSERT INTO `feedback` (`id`, `name`, `email`, `feedback`, `created_at`) VALUES
-(8, 'Ánh', 'nguyenthingocanhcrazy@gmail.com', 'tôi không yêu hmf', '2024-12-16 04:57:05');
 
 -- --------------------------------------------------------
 
@@ -71,11 +64,27 @@ INSERT INTO `feedback` (`id`, `name`, `email`, `feedback`, `created_at`) VALUES
 --
 
 CREATE TABLE `orders` (
-  `id` int(11) NOT NULL Primary key,
+  `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `order_date` datetime DEFAULT current_timestamp(),
-  `total_price` int NOT NULL,
-  `status` varchar(50) DEFAULT 'Đã đặt hàng'
+  `total_price` decimal(10,2) NOT NULL,
+  `status` varchar(50) DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `unit_price` int(11) NOT NULL,
+  `total_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -85,7 +94,7 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `product` (
-  `Id` int(11) NOT NULL Primary key,
+  `Id` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
   `Category` varchar(255) NOT NULL,
   `Type` varchar(50) NOT NULL,
@@ -191,7 +200,7 @@ INSERT INTO `product` (`Id`, `Name`, `Category`, `Type`, `Description`, `Price`,
 --
 
 CREATE TABLE `user` (
-  `id_user` int(11) NOT NULL Primary key,
+  `id_user` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -210,22 +219,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `email`, `phone`, `first_name`, `last_name`, `gender`, `address`, `birthdate`, `created_at`, `updated_at`) VALUES
-(2, 'phuttran', '123', 'a@gmail.com', '0989898989', 'Trần', 'Phú', 'male', 'hhsh', '2004-12-12', '2024-12-17 13:21:32', '2024-12-17 13:21:32');
+(10, 'phuttran', '123', 'a@gmail.com', '09090909090', 'Trần', 'Phú', 'male', 'Tân Phú', '9999-09-12', '2024-12-18 13:41:44', '2024-12-18 13:42:11');
 
 --
+-- Chỉ mục cho các bảng đã đổ
 --
-CREATE TABLE `order_details` (
-    `id` INT AUTO_INCREMENT Primary key,
-    `order_id` INT NOT NULL,
-    `product_id` INT NOT NULL,
-    `product_name` VARCHAR(255) NOT NULL,
-    `quantity` INT NOT NULL,
-    `unit_price` int NOT NULL,
-    `total_price` int NOT NULL
-); 
-ALTER TABLE `order_details` ADD CONSTRAINT fk_orderdetails_order FOREIGN KEY (order_id) REFERENCES orders(id);
-ALTER TABLE `order_details` ADD CONSTRAINT fk_orderdetails_product FOREIGN KEY (product_id) REFERENCES product(id);
-
 
 --
 -- Chỉ mục cho bảng `admin`
@@ -245,6 +243,14 @@ ALTER TABLE `feedback`
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_user` (`id_user`);
+
+--
+-- Chỉ mục cho bảng `order_details`
+--
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_orderdetails_order` (`order_id`),
+  ADD KEY `fk_orderdetails_product` (`product_id`);
 
 --
 -- Chỉ mục cho bảng `product`
@@ -267,19 +273,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
@@ -291,7 +303,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -302,6 +314,13 @@ ALTER TABLE `user`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
+-- Các ràng buộc cho bảng `order_details`
+--
+ALTER TABLE `order_details`
+  ADD CONSTRAINT `fk_orderdetails_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `fk_orderdetails_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`Id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

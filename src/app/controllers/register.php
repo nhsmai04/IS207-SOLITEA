@@ -65,7 +65,7 @@ class register extends DController
                 'first_name' => $first_name,
                 'last_name' => $last_name,
                 'email' => $email,
-                'password' => password_hash($password, PASSWORD_DEFAULT), // Mã hóa mật khẩu
+                'password' => $password, // Mã hóa mật khẩu
                 'address' => $address,
                 'birthdate' => $birthdate,
                 'gender' => $gender
@@ -73,8 +73,7 @@ class register extends DController
     
             $insertResult = $registerModel->insertUser($data);
             if ($insertResult) {
-                $message['msg'] = 'Đăng ký thành công!';
-                header('Location:' . BASE_URL . '/login?msg=' . urlencode(serialize($message)));
+                header('Location:' . BASE_URL . '/login');
                 exit();
             } else {
                 $message['msg'] = 'Có lỗi xảy ra. Vui lòng thử lại.';
