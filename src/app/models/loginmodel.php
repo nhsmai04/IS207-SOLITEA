@@ -7,8 +7,9 @@ class loginmodel extends DModel
         parent::__construct();
     }
 
-    public function login($table, $sql, $username, $password)
+    public function login($table_admin, $username, $password)
     {
+        $sql = "SELECT * FROM $table_admin WHERE username = ? AND password = ?";
         // $stmt = $this->db->prepare($sql);
         // $stmt->bindValue(':username', $username);
         // $stmt->bindValue(':password', $password);
@@ -20,6 +21,7 @@ class loginmodel extends DModel
 
     public function getLoginAdmin($table_admin, $username, $password)
     {
+        $sql = "SELECT * FROM $table_admin WHERE username =? AND password = ?";
         return $this->db->selectUser($sql, $username, $password);
     }
     public function getLoginUser($table_user, $email_user, $password)
