@@ -172,4 +172,15 @@ class Database extends PDO
         $statement->execute(array($username, $password));
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getUserByUsername($username)
+    {
+        // Sử dụng PDO để thực hiện truy vấn
+        $sql = "SELECT * FROM users WHERE username = :username LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+
+        // Trả về dữ liệu người dùng dưới dạng mảng
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

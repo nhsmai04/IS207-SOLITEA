@@ -107,9 +107,16 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                    <div class="col-lg-12">
+                        <div class="nav nav-tabs mb-3">
+                            <p class="nav-link active border-white border-bottom-0 text-primary" >Description</p>
+                        </div>
+                        <div class="mb-5">
+                            <p class="fw-bold mb-3">&emsp;&emsp;&emsp;<?= htmlspecialchars($fruit['Detail'])?></p>
+                        </div>
+                    </div>
 
-                <h1 class="fw-bold mb-0">Related products</h1>
+                <h1 class="fw-bold mb-4">Related products</h1>
                 <div id="relatedProductsCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <?php 

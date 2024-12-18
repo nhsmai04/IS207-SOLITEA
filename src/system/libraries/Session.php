@@ -72,4 +72,15 @@ class Session
         session_destroy();
         session_unset('login');
     }
+
+    public static function checkLogin()
+    {
+        self::init();  // Khởi tạo session nếu chưa được khởi tạo
+        // Kiểm tra xem người dùng đã đăng nhập hay chưa
+        if (self::get('login') !== true) {
+            // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
+            header('Location: ' . BASE_URL . '/login');
+            exit();
+        }
+    }
 }
