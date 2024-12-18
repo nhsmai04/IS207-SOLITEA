@@ -11,8 +11,6 @@ class Database extends PDO
     public function getItem($sql, $data = array(), $fetchStyle = PDO::FETCH_ASSOC)
     {
         try {
-
-
             $statement = $this->prepare($sql);
             foreach ($data as $key => $value) {
                 $statement->bindValue(":$key", $value);
@@ -37,21 +35,6 @@ class Database extends PDO
         }
         
     }
-    public function getItemRelated($table, $id)
-    {
-        try{
-            $sql = "SELECT * FROM $table WHERE id != :currentProductId ORDER BY id ASC LIMIT 20";
-            $statement = $this->prepare($sql);
-            $statement->bindParam(':currentProductId', $id, PDO::PARAM_INT);
-            $statement->execute();
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
-        } 
-        catch (PDOException $e){
-            echo "Lỗi truy vấn: " . $e->getMessage();
-            return false;
-        }
-    }
-
     public function getallItemByQuery($table, $keyword){ 
         try{
             $sql = "SELECT * FROM $table WHERE Name LIKE :keyword";
@@ -107,7 +90,6 @@ class Database extends PDO
             return false;
         }
     }
-
     public function affectedRow($sql, $username, $password)
     {
         $statement = $this->prepare($sql);
@@ -172,6 +154,11 @@ class Database extends PDO
         $statement->execute(array($username, $password));
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getLastInsertId()
+    {
+        return $this->lastInsertId();
+    }
+
     public function getUserByUsername($username)
     {
         // Sử dụng PDO để thực hiện truy vấn

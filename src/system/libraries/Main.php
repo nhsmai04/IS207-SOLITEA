@@ -49,10 +49,11 @@ class Main
 
     public function callMethod()
     {
-        if (isset($this->urlParts[2])) {
+        // Kiểm tra xem URL có đủ 3 phần hay không
+        if (isset($this->urlParts[2]) && isset($this->urlParts[3])) {
             $this->methodName = $this->urlParts[1];
             if (method_exists($this->controller, $this->methodName)) {
-                $this->controller->{$this->methodName}($this->urlParts[2]);
+                $this->controller->{$this->methodName}($this->urlParts[2], $this->urlParts[3]);
             } else {
                 $this->error("Method not found: " . $this->methodName);
             }
@@ -71,6 +72,7 @@ class Main
             }
         }
     }
+
 
     public function error($message)
     {

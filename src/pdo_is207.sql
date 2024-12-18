@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `pdo_is207`
 --
-
+use pdo_is207;
 -- --------------------------------------------------------
 
 --
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id_admin` int(11) NOT NULL,
+  `id_admin` int(11) NOT NULL Primary key,
   `username` varchar(200) NOT NULL,
   `password` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -50,7 +50,7 @@ INSERT INTO `admin` (`id_admin`, `username`, `password`) VALUES
 --
 
 CREATE TABLE `feedback` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL Primary key,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `feedback` text NOT NULL,
@@ -71,11 +71,11 @@ INSERT INTO `feedback` (`id`, `name`, `email`, `feedback`, `created_at`) VALUES
 --
 
 CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL Primary key,
   `id_user` int(11) NOT NULL,
   `order_date` datetime DEFAULT current_timestamp(),
-  `total_price` decimal(10,2) NOT NULL,
-  `status` varchar(50) DEFAULT 'pending'
+  `total_price` int NOT NULL,
+  `status` varchar(50) DEFAULT 'Đã đặt hàng'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -85,7 +85,7 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `product` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL Primary key,
   `Name` varchar(255) NOT NULL,
   `Category` varchar(255) NOT NULL,
   `Type` varchar(50) NOT NULL,
@@ -191,7 +191,7 @@ INSERT INTO `product` (`Id`, `Name`, `Category`, `Type`, `Description`, `Price`,
 --
 
 CREATE TABLE `user` (
-  `id_user` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL Primary key,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -213,8 +213,19 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `email`, `phone`, `first_
 (2, 'phuttran', '123', 'a@gmail.com', '0989898989', 'Trần', 'Phú', 'male', 'hhsh', '2004-12-12', '2024-12-17 13:21:32', '2024-12-17 13:21:32');
 
 --
--- Chỉ mục cho các bảng đã đổ
 --
+CREATE TABLE `order_details` (
+    `id` INT AUTO_INCREMENT Primary key,
+    `order_id` INT NOT NULL,
+    `product_id` INT NOT NULL,
+    `product_name` VARCHAR(255) NOT NULL,
+    `quantity` INT NOT NULL,
+    `unit_price` int NOT NULL,
+    `total_price` int NOT NULL
+); 
+ALTER TABLE `order_details` ADD CONSTRAINT fk_orderdetails_order FOREIGN KEY (order_id) REFERENCES orders(id);
+ALTER TABLE `order_details` ADD CONSTRAINT fk_orderdetails_product FOREIGN KEY (product_id) REFERENCES product(id);
+
 
 --
 -- Chỉ mục cho bảng `admin`
