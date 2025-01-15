@@ -79,9 +79,9 @@ Introduction
    - Search for products using keywords.
    - Add products to the cart and proceed to checkout.
 2. **Admins**:
-   -Log in through the admin interface.
-   -Add, edit, or delete products.
-   -View and manage orders.
+   - Log in through the admin interface.
+   - Add, edit, or delete products.
+   - View and manage orders.
 
 ## Contributions
 
