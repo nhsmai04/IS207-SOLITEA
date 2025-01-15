@@ -2,45 +2,45 @@
 
 ![2PM & Fruitables](https://www.diagnosisdiet.com/assets/images/7/fruit-og-0dd51728.jpg)
 
-## Giới thiệu
+Introduction
 
-**2PM & Fruitables** là một trang web bán rau củ sạch được phát triển với mục tiêu mang lại sản phẩm tươi ngon, an toàn cho sức khỏe của khách hàng. Sử dụng các công nghệ hiện đại, trang web cung cấp trải nghiệm mua sắm trực tuyến dễ dàng, nhanh chóng và tiện lợi.
+2PM & Fruitables is a clean vegetable e-commerce website designed to deliver fresh, safe, and high-quality products to customers. Utilizing modern technologies, the website provides a seamless, fast, and convenient online shopping experience.
 
-## Tính năng chính
+## Features
 
-- **Danh mục sản phẩm đa dạng**: Rau củ, trái cây, thực phẩm hữu cơ.
-- **Tìm kiếm thông minh**: Dễ dàng tìm kiếm sản phẩm theo từ khóa.
-- **Giỏ hàng và thanh toán trực tuyến**: Quản lý giỏ hàng và thanh toán nhanh chóng.
-- **Quản trị hệ thống**: Quản lý sản phẩm, đơn hàng và người dùng thông qua giao diện quản trị.
-- **Responsive Design**: Giao diện tương thích với mọi thiết bị, từ máy tính đến điện thoại.
+- **Diverse Product Categories**: Vegetables, fruits, organic foods.
+- **Smart Search: Easily find** products using keywords.
+- **Shopping Cart and Online Payment**: Manage your cart and check out quickly.
+- **System Administration**: Manage products, orders, and users via an admin interface.
+- **Responsive Design**: A user interface compatible with all devices, from desktops to mobile phones.
 
-## Công nghệ sử dụng
+## Technologies Used
 
 ### Frontend
 
-- **HTML5, CSS3**: Xây dựng giao diện.
-- **JavaScript, jQuery**: Tương tác người dùng.
-- **Bootstrap**: Thiết kế giao diện responsive nhanh chóng.
+- **HTML5, CSS3**: Build the interface.
+- **JavaScript, jQuery**: User interactions.
+- **Bootstrap**: Fast and responsive design implementation.
 
 ### Backend
 
-- **PHP**: Xử lý logic và giao tiếp với cơ sở dữ liệu.
-- **MySQL**: Quản lý cơ sở dữ liệu.
+- **PHP**: Handles logic and database communication.
+- **MySQL**: Database management.
 
-### Công cụ phát triển
+### Development Tools
 
-- **XAMPP**: Môi trường phát triển cục bộ.
-- **MVC Architecture**: Tổ chức mã nguồn theo mô hình MVC.
-- **Git & GitHub**: Quản lý phiên bản và cộng tác nhóm.
+- **XAMPP**: Local development environment.
+- **MVC Architecture**: Organize source code using the MVC model.
+- **Git & GitHub**: Version control and team collaboration.
 
-## Cách cài đặt và chạy dự án
+## Installation and Setup
 
-1. **Yêu cầu hệ thống**:
+1. **System Requirements**:
 
    - XAMPP hoặc môi trường tương đương (PHP >= 7.4, MySQL >= 5.7).
    - Trình duyệt web hiện đại.
 
-2. **Các bước thực hiện**:
+2. **Step by step**:
    - Clone repository về máy:
      ```bash
      git clone https://github.com/your-username/2PM-Fruitables.git
@@ -54,7 +54,7 @@
    - Khởi chạy XAMPP và bật Apache và MySQL.
    - Truy cập trang web tại: `http://localhost/2PM-Fruitables`.
 
-## Cấu trúc thư mục
+## Folder Structure
 
 ```
 2PM-Fruitables/
@@ -73,25 +73,25 @@
 └── .gitignore
 ```
 
-## Hướng dẫn sử dụng
+## Usage Guide
 
-1. **Người dùng**:
+1. **Users**
    - Tìm kiếm sản phẩm bằng từ khóa.
    - Thêm sản phẩm vào giỏ hàng và thanh toán.
-2. **Quản trị viên**:
+2. **Admins**:
    - Đăng nhập qua giao diện quản trị.
    - Thêm, chỉnh sửa hoặc xóa sản phẩm.
    - Xem và quản lý đơn hàng.
 
-## Đóng góp
+## Contributions
 
-Chúng tôi luôn hoan nghênh mọi ý kiến đóng góp để cải thiện sản phẩm. Hãy tạo một pull request hoặc mở một issue trên GitHub.
+We welcome all suggestions to improve the product. Please create a pull request or open an issue on GitHub.
 
-## Liên hệ
+## Contact
 
 - **Email**: [support@2pmfruitables.com](22520979@gm.uit.edu.vn)
 - **Facebook**: [2PM & Fruitables](https://facebook.com/nhsmai04)
 
-## Bản quyền
+## Copyright
 
-Bản quyền thuộc về 2PM & Fruitables. Mọi quyền được bảo lưu.
+All rights reserved by 2PM & Fruitables.
