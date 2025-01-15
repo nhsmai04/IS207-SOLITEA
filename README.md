@@ -37,22 +37,22 @@ Introduction
 
 1. **System Requirements**:
 
-   - XAMPP hoặc môi trường tương đương (PHP >= 7.4, MySQL >= 5.7).
-   - Trình duyệt web hiện đại.
+   - XAMPP or equivalent environment (PHP >= 7.4, MySQL >= 5.7).
+   - A modern web browser.
 
 2. **Step by step**:
-   - Clone repository về máy:
+   - Clone repository:
      ```bash
      git clone https://github.com/your-username/2PM-Fruitables.git
      ```
-   - Di chuyển vào thư mục dự án:
+   - Navigate to the project folde:
      ```bash
      cd 2PM-Fruitables
      ```
-   - Copy dự án vào thư mục `htdocs` của XAMPP.
-   - Import tệp cơ sở dữ liệu từ thư mục `database` vào MySQL (file `2pm_fruitables.sql`).
-   - Khởi chạy XAMPP và bật Apache và MySQL.
-   - Truy cập trang web tại: `http://localhost/2PM-Fruitables`.
+   - Copy the project to XAMPP's htdocs directory.
+   - Import the database file located in the database folder (file 2pm_fruitables.sql) into MySQL.
+   - Start XAMPP and enable Apache and MySQL.
+   - Access the website at: http://localhost/2PM-Fruitables.
 
 ## Folder Structure
 
@@ -76,12 +76,12 @@ Introduction
 ## Usage Guide
 
 1. **Users**
-   - Tìm kiếm sản phẩm bằng từ khóa.
-   - Thêm sản phẩm vào giỏ hàng và thanh toán.
+   - Search for products using keywords.
+   - Add products to the cart and proceed to checkout.
 2. **Admins**:
-   - Đăng nhập qua giao diện quản trị.
-   - Thêm, chỉnh sửa hoặc xóa sản phẩm.
-   - Xem và quản lý đơn hàng.
+   -Log in through the admin interface.
+   -Add, edit, or delete products.
+   -View and manage orders.
 
 ## Contributions
 
